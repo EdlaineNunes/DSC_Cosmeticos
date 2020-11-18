@@ -1,0 +1,6 @@
+br\edu\ifnmg\logicaaplicacao\Usuario.class
+br\edu\ifnmg\logicaaplicacao\Sexo.class
+br\edu\ifnmg\logicaaplicacao\Repositorio.class
+br\edu\ifnmg\logicaaplicacao\UsuarioRepositorio.class
+br\edu\ifnmg\logicaaplicacao\ErroValidacaoException.class
+br\edu\ifnmg\logicaaplicacao\Usuario_.class
