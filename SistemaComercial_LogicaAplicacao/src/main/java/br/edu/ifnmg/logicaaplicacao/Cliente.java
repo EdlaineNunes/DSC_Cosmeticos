@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
     
     @Column (length=250, nullable=false)
     String nome;
-
+    
     public Cliente(Long id, String nome) {
         this.id = id;
         this.nome = nome;

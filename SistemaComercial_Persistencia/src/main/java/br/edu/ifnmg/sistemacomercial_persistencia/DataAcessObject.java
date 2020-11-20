@@ -29,7 +29,6 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
     @Override
     public boolean Salvar(T obj) {
         EntityTransaction transacao = this.manager.getTransaction();
-        
         try{
             //inicio da transacao
             transacao.begin();
@@ -50,17 +49,42 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
             
             return false;
         }
-        
     }
 
     @Override
     public boolean Apagar(T obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityTransaction transacao = this.manager.getTransaction();
+        try{
+            //inicio da transacao
+            transacao.begin();
+            
+            //remover transacao no bd
+            this.manager.remove(obj);
+            
+            //confirmar remoção
+            transacao.commit();
+            System.out.println("Objeto removido!");
+            
+            return true;      
+        
+        }catch(Exception ex){
+            //cancelar transacao
+            transacao.rollback();
+            System.out.println("Message: "+ ex);
+            
+            return false;
+        }
     }
 
     @Override
-    public T Abrir(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T Abrir(Long id) {        
+        try{            
+            T obj = (T)this.manager.find(this.type,id);
+            return obj;
+        }catch(Exception ex){
+            System.out.println("Message: "+ ex);
+            return null;
+        }
     }
 
     public abstract List<T> Buscar(T obj);

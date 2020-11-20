@@ -5,10 +5,11 @@
  */
 package br.edu.ifnmg.sistemacomercial_apresentacao;
 
-import br.edu.ifnmg.logicaaplicacao.Cliente;
-import br.edu.ifnmg.logicaaplicacao.ClienteRepositorio;
+import br.edu.ifnmg.logicaaplicacao.ErroValidacaoException;
 import br.edu.ifnmg.logicaaplicacao.Sexo;
-import br.edu.ifnmg.sistemacomercial_persistencia.ClienteDAO;
+import br.edu.ifnmg.logicaaplicacao.Usuario;
+import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
+import br.edu.ifnmg.sistemacomercial_persistencia.UsuarioDAO;
 
 /**
  *
@@ -19,19 +20,35 @@ public class Console {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {//throws ErroValidacaoException {
         // TODO code application logic here
         
-        ClienteRepositorio repo = new ClienteDAO();
-        Cliente c = new Cliente();
-        c.setNome("ana");
-        
-        if(repo.Salvar(c)){
-            System.out.println("Sucesso!");
-        }
-        else{
-            System.out.println("Falha!");
-        }
+//        ClienteRepositorio repo = new ClienteDAO();
+//        Cliente c = new Cliente();
+//        c.setNome("ana");
+//        
+//        if(repo.Salvar(c)){
+//            System.out.println("Sucesso!");
+//        }
+//        else{
+//            System.out.println("Falha!");
+//        }
+
+          UsuarioRepositorio repo = new UsuarioDAO();
+//          Usuario u = new Usuario();
+//          u.setLogin("jose");
+//          u.setSenha("123");
+//          u.setNome("jose");
+//          u.setSexo(Sexo.M);   //não tá salvando sexo prq é enumeracao
+//          u.setCpf("11111111111");
+//          
+//          if(repo.Salvar(u))
+//              System.out.println("Salvo com sucesso");
+//          else
+//              System.out.println("Falha ao salvar");
+        Usuario u = repo.Abrir(1L);
+        System.out.println(u.getLogin());
+          
     }
     
 }
