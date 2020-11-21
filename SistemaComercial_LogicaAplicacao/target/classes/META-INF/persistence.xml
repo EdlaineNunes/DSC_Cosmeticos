@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifnmg.logicaaplicacao.Usuario</class>
     <class>br.edu.ifnmg.logicaaplicacao.Cliente</class>
+    <class>br.edu.ifnmg.logicaaplicacao.Fornecedor</class>
+    <class>br.edu.ifnmg.logicaaplicacao.Produto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dsc_cosm?useTimezone=true&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="edlaine"/>
