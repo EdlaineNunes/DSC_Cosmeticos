@@ -9,10 +9,13 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -29,15 +32,24 @@ public class Pessoa implements Serializable {
     
     @Column (length=250, nullable=false)
     private String nome;
+    
+    @Enumerated(EnumType.ORDINAL)
+    private PessoaTipo tipo;
+    
+    //controle de concorrencia
+    @Version
+    private int version;
 
     public Pessoa() {
         this.id = 0L;
         this.nome="";
+        this.tipo = PessoaTipo.Fisica;
     }
     
-    public Pessoa(Long id, String nome) {
+    public Pessoa(Long id, String nome, PessoaTipo tipo) {
         this.id = id;
         this.nome = nome;
+        this.tipo = tipo;
     }
    
     public Long getId() {
@@ -56,6 +68,22 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
+    public PessoaTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(PessoaTipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

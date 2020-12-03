@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 
 /**
  *
@@ -47,6 +48,10 @@ public class Usuario implements Serializable {
     
     @Column(length=20, nullable=false)
     private String senha;
+    
+    //controle de concorrencia
+    @Version
+    private int version;
     
     // n persistido no bd
     @Transient
@@ -133,6 +138,14 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override

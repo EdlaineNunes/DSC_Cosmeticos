@@ -51,7 +51,7 @@ public class Console {
           
        UsuarioDAO repope = new UsuarioDAO();
        ProdutoDAO repopr = new ProdutoDAO();
-       //TransacaoDAO repot = new TransacaoDAO();
+       TransacaoDAO repot = new TransacaoDAO();
        
        Produto pr = new Produto();
        pr.setNome("produto");

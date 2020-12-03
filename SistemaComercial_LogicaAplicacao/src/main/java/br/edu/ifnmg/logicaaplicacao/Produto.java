@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -34,6 +35,10 @@ public class Produto implements Serializable {
     
     @Column(precision=8, scale=2)
     private BigDecimal valorUnitario;
+    
+    //controle de concorrencia
+    @Version
+    private int version;
 
     public Produto() {
         this.id=0L;
@@ -71,6 +76,14 @@ public class Produto implements Serializable {
         this.valorUnitario = valorUnitario;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

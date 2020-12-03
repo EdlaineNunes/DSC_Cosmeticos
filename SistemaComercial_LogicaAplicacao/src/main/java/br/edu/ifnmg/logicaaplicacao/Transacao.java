@@ -14,6 +14,8 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 /**
  *
@@ -52,6 +55,14 @@ public class Transacao implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy= "transacao")
     private List<TransacaoItem> itens;
+    
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable=false)
+    private TransacaoTipo tipo;
+    
+    //controle de concorrencia
+    @Version
+    private int version;
 
     public Transacao() {
         this.id=0L;
@@ -59,13 +70,16 @@ public class Transacao implements Serializable {
         this.valorTotal = new BigDecimal("0.0");
         this.criacao = new Date();
         this.itens = new ArrayList<>();
+        this.tipo= TransacaoTipo.Venda;
     }
 
-    public Transacao(Long id, Pessoa pessoa, Date criacao, BigDecimal valorTotal) {
+    public Transacao(Long id, Pessoa pessoa, Date criacao, 
+            BigDecimal valorTotal, TransacaoTipo tipo) {
         this.id = id;
         this.pessoa = new Pessoa();
         this.criacao = new Date();
         this.valorTotal = new BigDecimal("valorTotal");
+        this.tipo = tipo; 
     }
     
     public Long getId() {
@@ -108,6 +122,14 @@ public class Transacao implements Serializable {
         this.itens = itens;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+    
     public boolean add(TransacaoItem item){
         if(! this.itens.contains(item)){
             this.itens.add(item);
@@ -127,7 +149,15 @@ public class Transacao implements Serializable {
         }
         return false;
     }
-        
+
+    public TransacaoTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TransacaoTipo tipo) {
+        this.tipo = tipo;
+    }
+           
     @Override
     public int hashCode() {
         int hash = 3;
