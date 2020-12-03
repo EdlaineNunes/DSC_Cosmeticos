@@ -5,24 +5,24 @@
  */
 package br.edu.ifnmg.sistemacomercial_persistencia;
 
-import br.edu.ifnmg.logicaaplicacao.Produto;
-import br.edu.ifnmg.logicaaplicacao.ProdutoRepositorio;
+import br.edu.ifnmg.logicaaplicacao.Transacao;
+import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 import java.util.List;
 
 /**
  *
  * @author edlaine
  */
-public class ProdutoDAO 
-    extends DataAcessObject<Produto> 
-        implements ProdutoRepositorio{
+public class TransacaoDAO 
+        extends DataAcessObject<Transacao> 
+        implements TransacaoRepositorio {
 
-    public ProdutoDAO() {
-        super(Produto.class);
+    public TransacaoDAO() {
+        super(Transacao.class);
     }
 
     @Override
-    public List<Produto> Buscar(Produto obj) {
+    public List<Transacao> Buscar(Transacao obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

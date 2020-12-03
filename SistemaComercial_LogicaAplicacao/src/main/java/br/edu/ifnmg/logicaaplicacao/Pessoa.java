@@ -6,7 +6,6 @@
 package br.edu.ifnmg.logicaaplicacao;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,34 +18,28 @@ import javax.persistence.Table;
  *
  * @author edlaine
  */
-
 @Entity
-@Table(name="produtos")
-public class Produto implements Serializable {
+@Table(name="pessoas")
+public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(length=250, nullable=false, unique=true)
+    @Column (length=250, nullable=false)
     private String nome;
-    
-    @Column(precision=8, scale=2)
-    private BigDecimal valorUnitario;
 
-    public Produto() {
-        this.id=0L;
+    public Pessoa() {
+        this.id = 0L;
         this.nome="";
-        this.valorUnitario= new BigDecimal("0.0");
     }
-
-    public Produto(Long id, String nome, BigDecimal valorUnitario) {
+    
+    public Pessoa(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.valorUnitario = new BigDecimal("valorUnitario");
     }
-    
+   
     public Long getId() {
         return id;
     }
@@ -63,20 +56,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public BigDecimal getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.nome);
-        hash = 17 * hash + Objects.hashCode(this.valorUnitario);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -91,14 +75,11 @@ public class Produto implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Produto other = (Produto) obj;
+        final Pessoa other = (Pessoa) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.valorUnitario, other.valorUnitario)) {
             return false;
         }
         return true;

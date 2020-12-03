@@ -1,7 +1,15 @@
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Repositorio.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Produto.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Transacao.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\TransacaoItem.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\FornecedorRepositorio.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Fornecedor.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Sexo.java
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Cliente.java
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\UsuarioRepositorio.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\TransacaoRepositorio.java
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Usuario.java
-C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Sexo.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\ProdutoRepositorio.java
+C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\Pessoa.java
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\ErroValidacaoException.java
 C:\Users\edlai\OneDrive\Documents\NetBeansProjects\DSC_Cosmeticos\SistemaComercial_LogicaAplicacao\src\main\java\br\edu\ifnmg\logicaaplicacao\ClienteRepositorio.java

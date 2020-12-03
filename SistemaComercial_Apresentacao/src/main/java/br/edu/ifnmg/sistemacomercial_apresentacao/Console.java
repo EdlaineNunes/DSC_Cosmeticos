@@ -5,10 +5,10 @@
  */
 package br.edu.ifnmg.sistemacomercial_apresentacao;
 
-import br.edu.ifnmg.logicaaplicacao.ErroValidacaoException;
-import br.edu.ifnmg.logicaaplicacao.Sexo;
+import br.edu.ifnmg.logicaaplicacao.Produto;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
-import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
+import br.edu.ifnmg.sistemacomercial_persistencia.ProdutoDAO;
+import br.edu.ifnmg.sistemacomercial_persistencia.TransacaoDAO;
 import br.edu.ifnmg.sistemacomercial_persistencia.UsuarioDAO;
 
 /**
@@ -34,7 +34,7 @@ public class Console {
 //            System.out.println("Falha!");
 //        }
 
-          UsuarioRepositorio repo = new UsuarioDAO();
+        //  UsuarioRepositorio repo = new UsuarioDAO();
 //          Usuario u = new Usuario();
 //          u.setLogin("jose");
 //          u.setSenha("123");
@@ -46,9 +46,25 @@ public class Console {
 //              System.out.println("Salvo com sucesso");
 //          else
 //              System.out.println("Falha ao salvar");
-        Usuario u = repo.Abrir(1L);
-        System.out.println(u.getLogin());
+        //Usuario u = repo.Abrir(1L);
+       // System.out.println(u.getLogin());
           
+       UsuarioDAO repope = new UsuarioDAO();
+       ProdutoDAO repopr = new ProdutoDAO();
+       //TransacaoDAO repot = new TransacaoDAO();
+       
+       Produto pr = new Produto();
+       pr.setNome("produto");
+       repopr.Salvar(pr);
+       
+       Usuario u = new Usuario();
+       u.setLogin("jose");
+       u.setSenha("123");
+       u.setNome("jose");
+    // u.setSexo(Sexo.M);   //não tá salvando sexo prq é enumeracao
+       u.setCpf("11111111111");
+       repope.Salvar(u);
+       
     }
     
 }
