@@ -9,6 +9,7 @@ package br.edu.ifnmg.logicaaplicacao;
  *
  * @author edlaine
  */
-public interface UsuarioRepositorio extends Repositorio<Usuario>{
+public interface UsuarioRepositorio 
+        extends Repositorio<Usuario>{
     public boolean autenticacao(String login, String senha);
 }

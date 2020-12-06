@@ -11,5 +11,7 @@ package br.edu.ifnmg.logicaaplicacao;
  */
 public enum TransacaoTipo {
     Venda,
-    Compra
+    Compra, 
+    Estorno,
+    Descarte
 }

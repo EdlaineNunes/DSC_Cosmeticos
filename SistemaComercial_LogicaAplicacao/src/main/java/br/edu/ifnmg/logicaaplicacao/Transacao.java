@@ -38,7 +38,7 @@ public class Transacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     //1 pessoa N transacoes
@@ -60,26 +60,36 @@ public class Transacao implements Serializable {
     @Column(nullable=false)
     private TransacaoTipo tipo;
     
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private Usuario usuario;
+    
     //controle de concorrencia
     @Version
     private int version;
 
     public Transacao() {
+        super();
         this.id=0L;
         this.pessoa= null;
         this.valorTotal = new BigDecimal("0.0");
         this.criacao = new Date();
         this.itens = new ArrayList<>();
         this.tipo= TransacaoTipo.Venda;
+        this.version = 1;
+        this.usuario = null;
     }
 
-    public Transacao(Long id, Pessoa pessoa, Date criacao, 
-            BigDecimal valorTotal, TransacaoTipo tipo) {
-        this.id = id;
-        this.pessoa = new Pessoa();
+    public Transacao(Pessoa pessoa, TransacaoTipo tipo, 
+            Usuario usuario) {
+        super();
+        this.id = 0L;
+        this.pessoa = pessoa;
         this.criacao = new Date();
-        this.valorTotal = new BigDecimal("valorTotal");
+        this.valorTotal = new BigDecimal("0.0");
         this.tipo = tipo; 
+        this.version = 1;
+        this.usuario = usuario;
+        this.itens = new ArrayList<>();
     }
     
     public Long getId() {
@@ -156,6 +166,14 @@ public class Transacao implements Serializable {
 
     public void setTipo(TransacaoTipo tipo) {
         this.tipo = tipo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
            
     @Override

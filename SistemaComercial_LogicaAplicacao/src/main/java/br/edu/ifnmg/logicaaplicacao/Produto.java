@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -23,6 +25,7 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name="produtos")
+@SecondaryTable(name = "estoque")
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,20 +39,33 @@ public class Produto implements Serializable {
     @Column(precision=8, scale=2)
     private BigDecimal valorUnitario;
     
+    @Column(nullable = false, table= "estoque")
+    private int estoque;
+    
     //controle de concorrencia
     @Version
     private int version;
+    
+    @ManyToOne
+    private Usuario usuario;
 
     public Produto() {
+        super();
         this.id=0L;
         this.nome="";
         this.valorUnitario= new BigDecimal("0.0");
+        this.version = 1;
+        this.estoque = 0;
     }
 
-    public Produto(Long id, String nome, BigDecimal valorUnitario) {
-        this.id = id;
+    public Produto(String nome, String valorUnitario,
+            int estoque) {
+        super();
+        this.id = 0L;
         this.nome = nome;
-        this.valorUnitario = new BigDecimal("valorUnitario");
+        this.valorUnitario = new BigDecimal(valorUnitario);
+        this.version = 1;
+        this.estoque = estoque;
     }
     
     public Long getId() {
@@ -83,13 +99,32 @@ public class Produto implements Serializable {
     public void setVersion(int version) {
         this.version = version;
     }
-    
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.nome);
-        hash = 17 * hash + Objects.hashCode(this.valorUnitario);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.valorUnitario);
+        hash = 59 * hash + this.estoque;
+        hash = 59 * hash + this.version;
+        hash = 59 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -105,6 +140,12 @@ public class Produto implements Serializable {
             return false;
         }
         final Produto other = (Produto) obj;
+        if (this.estoque != other.estoque) {
+            return false;
+        }
+        if (this.version != other.version) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -114,11 +155,12 @@ public class Produto implements Serializable {
         if (!Objects.equals(this.valorUnitario, other.valorUnitario)) {
             return false;
         }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
         return true;
     }
     
-    
-
     @Override
     public String toString() {
         return this.nome;

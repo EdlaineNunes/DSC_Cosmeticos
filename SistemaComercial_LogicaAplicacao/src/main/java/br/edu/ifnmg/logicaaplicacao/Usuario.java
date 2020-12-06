@@ -7,10 +7,11 @@ package br.edu.ifnmg.logicaaplicacao;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,9 +40,8 @@ public class Usuario implements Serializable {
     @Column(length=15, nullable=false, unique=true)
     private String cpf;
     
-    //@Column(length=2, nullable=false)
-    @Transient
-    private Sexo sexo;
+    @Enumerated (EnumType.STRING)
+    private Genero sexo;
     
     @Column(length=20, nullable=false, unique=true)
     private String login;
@@ -53,6 +53,9 @@ public class Usuario implements Serializable {
     @Version
     private int version;
     
+    @Enumerated (EnumType.STRING)
+    private Funcao funcao;
+    
     // n persistido no bd
     @Transient
     private Pattern regex_cpf = Pattern.compile
@@ -62,19 +65,23 @@ public class Usuario implements Serializable {
         this.id = 0L;
         this.nome = "";
         this.cpf = "00000000000";
-        this.sexo = Sexo.M;
+        this.sexo = Genero.Masculino;
         this.login="";
         this.senha="";
+        this.version = 1;
+        this.funcao = Funcao.Atendente;
     }
     
-    public Usuario(long id, String nome, String cpf, Sexo sexo,
-            String login, String senha){
+    public Usuario(long id, String nome, String cpf, Genero sexo,
+            String login, String senha, int version, Funcao funcao){
         this.id = id;
         this.nome= nome;
         this.cpf= cpf;
         this.sexo= sexo;
         this.login= login;
         this.senha= senha;
+        this.version = version;
+        this.funcao = funcao;
     }
        
     public Long getId() {
@@ -116,11 +123,11 @@ public class Usuario implements Serializable {
             this.cpf=cpf; 
 }
 
-    public Sexo getSexo() {
+    public Genero getSexo() {
         return sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(Genero sexo) {
         this.sexo = sexo;
     }
 
@@ -148,6 +155,14 @@ public class Usuario implements Serializable {
         this.version = version;
     }
 
+    public Funcao getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Funcao funcao) {
+        this.funcao = funcao;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;

@@ -17,7 +17,7 @@ import br.edu.ifnmg.logicaaplicacao.Repositorio;
  */
 public abstract class  DataAcessObject<T> implements Repositorio<T>{
 
-    private EntityManager manager; 
+    protected EntityManager manager; 
     private Class type; 
     
     public DataAcessObject(Class type){
