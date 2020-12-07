@@ -52,9 +52,18 @@ public class TransacaoItem implements Serializable {
     }
 
     public TransacaoItem(Produto produto, int quantidade) {
+        this.transacao = transacao;
         this.produto = produto;
         this.quantidade = quantidade;
         this.valorUnitario = this.produto.getValorUnitario();
+    }
+    
+    public TransacaoItem(Transacao transacao, Produto produto, int quantidade) {
+        super();
+        this.transacao = transacao;
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.valorUnitario = this.produto.getValorUnitario();    
     }
 
     public Transacao getTransacao() {

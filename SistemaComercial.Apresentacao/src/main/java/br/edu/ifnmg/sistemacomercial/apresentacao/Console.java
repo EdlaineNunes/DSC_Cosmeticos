@@ -126,28 +126,28 @@ public class Console {
        Produto pdt = new Produto();
        pdt.setNome("Shampoo Seda");
        pdt.setValorUnitario(new BigDecimal("3.5"));
-       pdt.setEstoque(30);
+       pdt.setEstoque(100);
        pdt.setUsuario(ua);
        repoProduto.Salvar(pdt);
        
        Produto pdtA = new Produto();
        pdtA.setNome("Condicionar Bio");
        pdtA.setValorUnitario(new BigDecimal("10.0"));
-       pdtA.setEstoque(15);
+       pdtA.setEstoque(100);
        pdt.setUsuario(u);
        repoProduto.Salvar(pdtA);
        
        Produto pdtB = new Produto();
        pdtB.setNome("Creme de Pentear");
        pdtB.setValorUnitario(new BigDecimal("5.5"));
-       pdtB.setEstoque(20);
+       pdtB.setEstoque(100);
        pdt.setUsuario(ub);
        repoProduto.Salvar(pdtB);
        
        Produto pdtC = new Produto();
        pdtC.setNome("Creme de pele");
        pdtC.setValorUnitario(new BigDecimal("5.5"));
-       pdtC.setEstoque(15);
+       pdtC.setEstoque(100);
        pdt.setUsuario(u);
        repoProduto.Salvar(pdtC);
        
@@ -159,35 +159,35 @@ public class Console {
        var user3 = repoUsuario.Abrir(3L);
        
        //pessoaFisica e pessoa Juridica
-       var p1 = repoPFisica.Abrir(1L);
-       var p2 = repoPFisica.Abrir(2L);
-       var p3 = repoPFisica.Abrir(3L);
+       var p1 = repoPFisica.Abrir(4L);
+       var p2 = repoPFisica.Abrir(5L);
+       var p3 = repoPFisica.Abrir(6L);
        
-       var pj1 = repoPJuridica.Abrir(4L);
-       var pj2 = repoPJuridica.Abrir(5L);
+       var pj1 = repoPJuridica.Abrir(7L);
+       var pj2 = repoPJuridica.Abrir(8L);
        
        //abrir produto
-       var pr1 = repoProduto.Abrir(1L);
-       var pr2 = repoProduto.Abrir(2L);
-       var pr3 = repoProduto.Abrir(3L);
-       var pr4 = repoProduto.Abrir(4L);
+       var pr1 = repoProduto.Abrir(9L);
+       var pr2 = repoProduto.Abrir(10L);
+       var pr3 = repoProduto.Abrir(11L);
+       var pr4 = repoProduto.Abrir(12L);
        
        
        //criar Transacao
-        Transacao t1 = new Transacao(p1,TransacaoTipo.Venda, user1);
-        t1.add(new TransacaoItem(pr1, 3));
-        t1.add(new TransacaoItem(pr2,4));
-        repoTransacao.Salvar(t1);
+       Transacao t1 = new Transacao(p1,TransacaoTipo.Venda, user1);
+       t1.add(new TransacaoItem(t1,pr1,3));
+       t1.add(new TransacaoItem(t1,pr2,4));
+       repoTransacao.Salvar(t1);
         
-        Transacao t2 = new Transacao(p2,TransacaoTipo.Venda, user2);
-        t2.add(new TransacaoItem(pr2, 2));
-        t2.add(new TransacaoItem(pr3,4));
-        repoTransacao.Salvar(t2);
+       Transacao t2 = new Transacao(p2,TransacaoTipo.Venda, user2);
+       t2.add(new TransacaoItem(t2,pr2,2));
+       t2.add(new TransacaoItem(t2,pr3,4));
+       repoTransacao.Salvar(t2);
         
-        Transacao t3 = new Transacao(pj1,TransacaoTipo.Compra, user3);
-        t3.add(new TransacaoItem(pr1, 15));
-        t3.add(new TransacaoItem(pr2,9));
-        repoTransacao.Salvar(t3);
+       Transacao t3 = new Transacao(pj1,TransacaoTipo.Compra, user3);
+       t3.add(new TransacaoItem(t3,pr1,15));
+       t3.add(new TransacaoItem(t3,pr2,9));
+       repoTransacao.Salvar(t3);
         
     }    
     
