@@ -1,0 +1,7 @@
+br\edu\ifnmg\sistemacomercial\persistencia\PessoaDAO.class
+br\edu\ifnmg\sistemacomercial\persistencia\TransacaoDAO.class
+br\edu\ifnmg\sistemacomercial\persistencia\PessoaFisicaDAO.class
+br\edu\ifnmg\sistemacomercial\persistencia\PessoaJuridicaDAO.class
+br\edu\ifnmg\sistemacomercial\persistencia\DataAcessObject.class
+br\edu\ifnmg\sistemacomercial\persistencia\ProdutoDAO.class
+br\edu\ifnmg\sistemacomercial\persistencia\UsuarioDAO.class
