@@ -68,6 +68,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
             String numero, String bairro, String complemento, 
             String cidade) {
         super();
+        //como pegar o representante??
         this.representante = representante;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;

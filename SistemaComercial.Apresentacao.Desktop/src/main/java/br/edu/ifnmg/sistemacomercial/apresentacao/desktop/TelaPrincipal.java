@@ -27,22 +27,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        JSistema = new javax.swing.JMenu();
+        JCadastros = new javax.swing.JMenu();
+        JMIUsuario = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Comercial");
+
+        JSistema.setText("Sistema");
+        jMenuBar1.add(JSistema);
+
+        JCadastros.setText("Cadastros");
+
+        JMIUsuario.setText("Usuário");
+        JMIUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIUsuarioActionPerformed(evt);
+            }
+        });
+        JCadastros.add(JMIUsuario);
+
+        jMenuBar1.add(JCadastros);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1240, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 599, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JMIUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIUsuarioActionPerformed
+        // TODO add your handling code here:
+        UsuarioBuscar tela = new UsuarioBuscar();
+        this.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMIUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +109,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JCadastros;
+    private javax.swing.JMenuItem JMIUsuario;
+    private javax.swing.JMenu JSistema;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,14 +38,13 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
             
             //confirmar transacao
             transacao.commit();
-            System.out.println("Commit");
             
             return true;      
         
         }catch(Exception ex){
             //cancelar transacao
             transacao.rollback();
-            System.out.println("Message: "+ ex);
+            //System.out.println("Message: "+ ex);
             
             return false;
         }
@@ -63,14 +62,12 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
             
             //confirmar remoção
             transacao.commit();
-            System.out.println("Objeto removido!");
             
             return true;      
         
         }catch(Exception ex){
             //cancelar transacao
             transacao.rollback();
-            System.out.println("Message: "+ ex);
             
             return false;
         }
@@ -82,7 +79,7 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
             T obj = (T)this.manager.find(this.type,id);
             return obj;
         }catch(Exception ex){
-            System.out.println("Message: "+ ex);
+            //System.out.println("Message: "+ ex);
             return null;
         }
     }

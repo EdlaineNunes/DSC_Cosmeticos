@@ -16,6 +16,7 @@ import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.Produto;
 import br.edu.ifnmg.logicaaplicacao.ProdutoAplicacao;
 import br.edu.ifnmg.logicaaplicacao.ProdutoFinalidade;
+import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.Status;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
 import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
@@ -24,6 +25,7 @@ import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
 import br.edu.ifnmg.logicaaplicacao.UnidadeCompra;
 import br.edu.ifnmg.logicaaplicacao.UnidadeVenda;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
+import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaFisicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaJuridicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.ProdutoDAO;
@@ -124,7 +126,7 @@ public class Console {
        pj.setNumero("55A");
        pj.setCidade("Londrina");
        pj.setComplemento("Não há");
-//       pj.setRepresentante(pf);
+//       pj.setRepresentante(p1);
        pj.addTelefone(new PessoaTelefone(pj, "111111441"));
        pj.addEmail(new PessoaEmail(pj, "email@gmail.com"));
        pj.setStatus(Status.Ativo);
@@ -140,7 +142,7 @@ public class Console {
        pjA.setNumero("99");
        pjA.setCidade("Feira de Santana");
        pjA.setComplemento("Não há");
-//       pj.setRepresentante(pf);
+ //      pj.setRepresentante(p2);
        pjA.addTelefone(new PessoaTelefone(pjA, "111111551"));
        pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));  
        pjA.setStatus(Status.Ativo);
@@ -246,7 +248,17 @@ public class Console {
     
     public static void main(String[] args) throws ErroValidacaoException {//throws ErroValidacaoException {   
 
-        criarBase();
+        //criarBase();
+        UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
+        
+        Usuario u = repo.Abrir(51L);
+        if (repo.Apagar(u))
+            System.out.println("SUCESSO");
+        else
+            System.out.println("ERRO");
+        
+        
+        
 //   
 //        PessoaFisicaRepositorio repo_pf = new PessoaFisicaDAO();
         

@@ -65,13 +65,15 @@ public class Usuario implements Serializable {
         this.id = 0L;
         this.nome = "";
         this.cpf = "";
-        this.sexo = Genero.Masculino;
+        this.sexo = Genero.Feminino;
         this.login="";
         this.senha="";
         this.version = 1;
         this.funcao = Funcao.Atendente;
         this.status = Status.Ativo;
     }
+    
+    
 
     public Usuario( String nome, String cpf, Genero sexo, 
             String login, String senha, Funcao funcao, 
@@ -93,12 +95,12 @@ public class Usuario implements Serializable {
         this.id = 0L;
         this.nome= "";
         this.cpf= "";
-        this.sexo= Genero.Feminino;
+        this.sexo = sexo;
         this.login= login;
         this.senha= senha;
         this.version = 1;
-        this.funcao = Funcao.Atendente;
-        this.status = Status.Ativo;
+        this.funcao = funcao;
+        this.status = status;
     }
 
     public Long getId() {
