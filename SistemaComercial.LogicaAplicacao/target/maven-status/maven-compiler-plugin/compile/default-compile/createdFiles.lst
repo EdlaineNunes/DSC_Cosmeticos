@@ -7,7 +7,9 @@ br\edu\ifnmg\logicaaplicacao\TransacaoItem_.class
 br\edu\ifnmg\logicaaplicacao\Repositorio.class
 br\edu\ifnmg\logicaaplicacao\Pessoa_.class
 br\edu\ifnmg\logicaaplicacao\PessoaFisicaRepositorio.class
+br\edu\ifnmg\logicaaplicacao\PessoaEmail_.class
 br\edu\ifnmg\logicaaplicacao\Pessoa.class
+br\edu\ifnmg\logicaaplicacao\PessoaEmail.class
 br\edu\ifnmg\logicaaplicacao\Transacao_.class
 br\edu\ifnmg\logicaaplicacao\Genero.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridica.class
@@ -15,9 +17,11 @@ br\edu\ifnmg\logicaaplicacao\TransacaoTipo.class
 br\edu\ifnmg\logicaaplicacao\Funcao.class
 br\edu\ifnmg\logicaaplicacao\ErroValidacaoException.class
 br\edu\ifnmg\logicaaplicacao\Transacao.class
+br\edu\ifnmg\logicaaplicacao\PessoaTelefone_.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridica_.class
 br\edu\ifnmg\logicaaplicacao\ProdutoRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridicaRepositorio.class
+br\edu\ifnmg\logicaaplicacao\PessoaTelefone.class
 br\edu\ifnmg\logicaaplicacao\UsuarioRepositorio.class
 br\edu\ifnmg\logicaaplicacao\TransacaoItem.class
 br\edu\ifnmg\logicaaplicacao\Usuario.class

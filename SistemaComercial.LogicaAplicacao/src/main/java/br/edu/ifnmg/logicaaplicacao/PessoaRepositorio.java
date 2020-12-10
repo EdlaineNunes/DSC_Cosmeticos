@@ -11,5 +11,5 @@ package br.edu.ifnmg.logicaaplicacao;
  */
 public interface PessoaRepositorio 
         extends Repositorio<Pessoa>{
-    
+    public Pessoa AbrirPorTipo(PessoaTipo tipo);
 }

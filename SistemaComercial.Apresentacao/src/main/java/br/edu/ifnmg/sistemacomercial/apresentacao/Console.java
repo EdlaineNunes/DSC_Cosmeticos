@@ -7,17 +7,17 @@ package br.edu.ifnmg.sistemacomercial.apresentacao;
 
 import br.edu.ifnmg.logicaaplicacao.Funcao;
 import br.edu.ifnmg.logicaaplicacao.Genero;
+import br.edu.ifnmg.logicaaplicacao.PessoaEmail;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
 import br.edu.ifnmg.logicaaplicacao.PessoaJuridica;
+import br.edu.ifnmg.logicaaplicacao.PessoaTelefone;
 import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.Produto;
-import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
 import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
 import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
-import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaFisicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaJuridicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.ProdutoDAO;
@@ -74,6 +74,10 @@ public class Console {
        pf.setCpf("12345678909");
        pf.setRg("MG0198764");
        pf.setTipo(PessoaTipo.Fisica);
+       pf.addTelefone(new PessoaTelefone(pf, "111111111"));
+       pf.addEmail(new PessoaEmail(pf, "email@gmail.com"));
+       pf.addTelefone(new PessoaTelefone(pf, "222222222"));
+       pf.addEmail(new PessoaEmail(pf, "teste@gmail.com"));
        repoPFisica.Salvar(pf);
        
        PessoaFisica pfA = new PessoaFisica();
@@ -82,14 +86,18 @@ public class Console {
        pfA.setCpf("12345678900");
        pfA.setRg("MG0198774");
        pfA.setTipo(PessoaTipo.Fisica);
+       pfA.addTelefone(new PessoaTelefone(pfA, "111111122"));
+       pfA.addEmail(new PessoaEmail(pfA, "email@gmail.com"));
        repoPFisica.Salvar(pfA);
        
        PessoaFisica pfB = new PessoaFisica();
        pfB.setNome("Angelo Junior Pereira");
        pfB.setGenero(Genero.Masculino);
-       pfB.setCpf("12345238909");
+       pfB.setCpf("12345888909");
        pfB.setRg("MG0198784");
        pfB.setTipo(PessoaTipo.Fisica);
+       pfB.addTelefone(new PessoaTelefone(pfB, "111111133"));
+       pfB.addEmail(new PessoaEmail(pfB, "email@gmail.com"));
        repoPFisica.Salvar(pfB);
        
        
@@ -98,28 +106,30 @@ public class Console {
        pj.setNome("seu josé barbearia");
        pj.setCnpj("000000000000");
        pj.setRazaoSocial("jose LTDA");
-       pj.setNomeFantasia("seu josé barbearia");
        pj.setTipo(PessoaTipo.Jurídica);
        pj.setRua("Rua Oliveira");
        pj.setBairro("Centro");
        pj.setNumero("55A");
        pj.setCidade("Londrina");
        pj.setComplemento("Não há");
-       //pj.setRepresentante(repoPFisica.Abrir(1L));
+//       pj.setRepresentante(pf);
+       pj.addTelefone(new PessoaTelefone(pj, "111111441"));
+       pj.addEmail(new PessoaEmail(pj, "email@gmail.com"));
        repoPJuridica.Salvar(pj);
        
        PessoaJuridica pjA = new PessoaJuridica();
        pjA.setNome("Mãos de luxo");
        pjA.setCnpj("0003333000000");
        pjA.setRazaoSocial("Mãos de luxo LTDA");
-       pjA.setNomeFantasia("Mãos de Luxo Manicure e Pedicure");
        pjA.setTipo(PessoaTipo.Jurídica);
        pjA.setRua("Rua Almeida");
        pjA.setBairro("São José");
        pjA.setNumero("99");
        pjA.setCidade("Feira de Santana");
        pjA.setComplemento("Não há");
-       //pj.setRepresentante(repoPFisica.Abrir(1L));
+//       pj.setRepresentante(pf);
+       pjA.addTelefone(new PessoaTelefone(pjA, "111111551"));
+       pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));       
        repoPJuridica.Salvar(pjA);
        
        //criando produtos

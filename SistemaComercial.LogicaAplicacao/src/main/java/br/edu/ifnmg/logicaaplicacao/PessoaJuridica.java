@@ -29,9 +29,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     @Column (name="razaoSocial", nullable= false, length=250)
     private String razaoSocial;
     
-    @Column (name="nomeFantasia", nullable= false, length=250)
-    private String nomeFantasia;
-    
     @Column (name="cnpj", nullable=false, length=20, unique=true)
     private String cnpj;
     
@@ -57,7 +54,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         super();
         this.representante = null;
         this.razaoSocial = "";
-        this.nomeFantasia = "";
         this.cnpj = "";
         this.rua = "";
         this.numero = "";
@@ -68,13 +64,12 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     }
     
     public PessoaJuridica( PessoaFisica representante, String razaoSocial, 
-            String nomeFantasia, String cnpj, String rua, 
+            String cnpj, String rua, 
             String numero, String bairro, String complemento, 
             String cidade) {
         super();
         this.representante = representante;
         this.razaoSocial = razaoSocial;
-        this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.rua = rua;
         this.numero = numero;
@@ -106,14 +101,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
-    }
-
-    public String getNomeFantasia() {
-        return nomeFantasia;
-    }
-
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
     }
 
     public String getCnpj() {
@@ -168,7 +155,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.razaoSocial);
-        hash = 97 * hash + Objects.hashCode(this.nomeFantasia);
         hash = 97 * hash + Objects.hashCode(this.cnpj);
         hash = 97 * hash + Objects.hashCode(this.rua);
         hash = 97 * hash + Objects.hashCode(this.numero);
@@ -191,9 +177,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         }
         final PessoaJuridica other = (PessoaJuridica) obj;
         if (!Objects.equals(this.razaoSocial, other.razaoSocial)) {
-            return false;
-        }
-        if (!Objects.equals(this.nomeFantasia, other.nomeFantasia)) {
             return false;
         }
         if (!Objects.equals(this.cnpj, other.cnpj)) {
@@ -219,6 +202,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return this.nomeFantasia;
+        return this.cnpj;
     }
 }

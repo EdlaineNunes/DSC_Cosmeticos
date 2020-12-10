@@ -12,4 +12,6 @@ package br.edu.ifnmg.logicaaplicacao;
 public interface PessoaJuridicaRepositorio 
         extends Repositorio<PessoaJuridica>{
     
+    public PessoaJuridica AbrirPorCNPJ(String cnpj);
+    
 }
