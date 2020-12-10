@@ -7,6 +7,7 @@ package br.edu.ifnmg.logicaaplicacao;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,34 +57,50 @@ public class Usuario implements Serializable {
     @Enumerated (EnumType.STRING)
     private Funcao funcao;
     
-    // n persistido no bd
-    @Transient
-    private Pattern regex_cpf = Pattern.compile
-        ("\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}"); //formatar cpf
+    @Enumerated(EnumType.STRING)
+    private Status status;
     
     public Usuario() {
+        super();
         this.id = 0L;
         this.nome = "";
-        this.cpf = "00000000000";
+        this.cpf = "";
         this.sexo = Genero.Masculino;
         this.login="";
         this.senha="";
         this.version = 1;
         this.funcao = Funcao.Atendente;
+        this.status = Status.Ativo;
     }
-    
-    public Usuario(long id, String nome, String cpf, Genero sexo,
-            String login, String senha, int version, Funcao funcao){
-        this.id = id;
-        this.nome= nome;
-        this.cpf= cpf;
-        this.sexo= sexo;
-        this.login= login;
-        this.senha= senha;
-        this.version = version;
+
+    public Usuario( String nome, String cpf, Genero sexo, 
+            String login, String senha, Funcao funcao, 
+            Status status) {
+        super();
+        this.id = 0L;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.login = login;
+        this.senha = senha;
+        this.version = 1;
         this.funcao = funcao;
+        this.status = status;
     }
        
+    public Usuario( String login, String senha){
+        super();
+        this.id = 0L;
+        this.nome= "";
+        this.cpf= "";
+        this.sexo= Genero.Feminino;
+        this.login= login;
+        this.senha= senha;
+        this.version = 1;
+        this.funcao = Funcao.Atendente;
+        this.status = Status.Ativo;
+    }
+
     public Long getId() {
         return id;
     }
@@ -101,27 +118,12 @@ public class Usuario implements Serializable {
     }
 
     public String getCpf() {
-//        if (cpf.length() == 11){
-//        //formatação do cpf no formato 000.000.000-00
-//            return cpf.substring(0, 3)+"." +
-//                   cpf.substring(3, 6)+"." +
-//                   cpf.substring(6, 9)+"-" +
-//                   cpf.substring(9, 11);
-//        }else
-            return this.cpf;
+        return cpf;
     }
 
-    public void setCpf(String cpf) {//throws ErroValidacaoException {
-//        if(cpf.length() == 11){
-//            //formatação do cpf no formato 000.000.000-00
-//            Matcher m = regex_cpf.matcher(cpf);
-//            if(m.matches())
-//                this.cpf = cpf.replace(".", "").replace("-", "");
-//            else
-//                throw new ErroValidacaoException("CPF Inválido!");  
-//        } else
-            this.cpf=cpf; 
-}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public Genero getSexo() {
         return sexo;
@@ -162,16 +164,27 @@ public class Usuario implements Serializable {
     public void setFuncao(Funcao funcao) {
         this.funcao = funcao;
     }
-    
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.nome);
-        hash = 31 * hash + Objects.hashCode(this.cpf);
-        hash = 31 * hash + Objects.hashCode(this.sexo);
-        hash = 31 * hash + Objects.hashCode(this.login);
-        hash = 31 * hash + Objects.hashCode(this.senha);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.cpf);
+        hash = 97 * hash + Objects.hashCode(this.sexo);
+        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 97 * hash + Objects.hashCode(this.senha);
+        hash = 97 * hash + this.version;
+        hash = 97 * hash + Objects.hashCode(this.funcao);
+        hash = 97 * hash + Objects.hashCode(this.status);
         return hash;
     }
 
@@ -187,6 +200,9 @@ public class Usuario implements Serializable {
             return false;
         }
         final Usuario other = (Usuario) obj;
+        if (this.version != other.version) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -205,8 +221,15 @@ public class Usuario implements Serializable {
         if (this.sexo != other.sexo) {
             return false;
         }
+        if (this.funcao != other.funcao) {
+            return false;
+        }
+        if (this.status != other.status) {
+            return false;
+        }
         return true;
-    } 
+    }
+       
     
     @Override
     public String toString() {

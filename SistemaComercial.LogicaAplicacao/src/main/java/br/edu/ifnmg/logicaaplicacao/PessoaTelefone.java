@@ -42,13 +42,13 @@ public class PessoaTelefone implements Serializable {
     private String telefone;
 
     public PessoaTelefone() {
-        this.id = id;
-        this.pessoa = pessoa;
-        this.telefone = telefone;
+        this.id = 0L;
+        this.pessoa = null;
+        this.telefone = "";
     }
 
     public PessoaTelefone(Pessoa pessoa, String telefone) {
-        this.id = id;
+        this.id = 0L;
         this.pessoa = pessoa;
         this.telefone = telefone;
     }

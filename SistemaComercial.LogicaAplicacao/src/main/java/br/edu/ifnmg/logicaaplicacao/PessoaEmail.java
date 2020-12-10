@@ -39,13 +39,13 @@ public class PessoaEmail implements Serializable {
     private String email;
 
     public PessoaEmail() {
-        this.id = id;
-        this.pessoa = pessoa;
-        this.email = email;
+        this.id = 0L;
+        this.pessoa = null;
+        this.email = "";
     }
 
     public PessoaEmail(Pessoa pessoa, String email) {
-        this.id = id;
+        this.id = 0L;
         this.pessoa = pessoa;
         this.email = email;
     }

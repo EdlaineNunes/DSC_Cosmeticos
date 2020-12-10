@@ -1,5 +1,6 @@
 br\edu\ifnmg\logicaaplicacao\PessoaFisica_.class
 br\edu\ifnmg\logicaaplicacao\PessoaTipo.class
+br\edu\ifnmg\logicaaplicacao\UnidadeCompra.class
 br\edu\ifnmg\logicaaplicacao\Produto.class
 br\edu\ifnmg\logicaaplicacao\PessoaFisica.class
 br\edu\ifnmg\logicaaplicacao\Produto_.class
@@ -10,6 +11,7 @@ br\edu\ifnmg\logicaaplicacao\PessoaFisicaRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaEmail_.class
 br\edu\ifnmg\logicaaplicacao\Pessoa.class
 br\edu\ifnmg\logicaaplicacao\PessoaEmail.class
+br\edu\ifnmg\logicaaplicacao\ProdutoFinalidade.class
 br\edu\ifnmg\logicaaplicacao\Transacao_.class
 br\edu\ifnmg\logicaaplicacao\Genero.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridica.class
@@ -17,6 +19,7 @@ br\edu\ifnmg\logicaaplicacao\TransacaoTipo.class
 br\edu\ifnmg\logicaaplicacao\Funcao.class
 br\edu\ifnmg\logicaaplicacao\ErroValidacaoException.class
 br\edu\ifnmg\logicaaplicacao\Transacao.class
+br\edu\ifnmg\logicaaplicacao\UnidadeVenda.class
 br\edu\ifnmg\logicaaplicacao\PessoaTelefone_.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridica_.class
 br\edu\ifnmg\logicaaplicacao\ProdutoRepositorio.class
@@ -24,8 +27,10 @@ br\edu\ifnmg\logicaaplicacao\PessoaJuridicaRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaTelefone.class
 br\edu\ifnmg\logicaaplicacao\UsuarioRepositorio.class
 br\edu\ifnmg\logicaaplicacao\TransacaoItem.class
+br\edu\ifnmg\logicaaplicacao\ProdutoAplicacao.class
 br\edu\ifnmg\logicaaplicacao\Usuario.class
 br\edu\ifnmg\logicaaplicacao\RepositorioFactory.class
+br\edu\ifnmg\logicaaplicacao\Status.class
 br\edu\ifnmg\logicaaplicacao\TransacaoRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaRepositorio.class
 br\edu\ifnmg\logicaaplicacao\Usuario_.class

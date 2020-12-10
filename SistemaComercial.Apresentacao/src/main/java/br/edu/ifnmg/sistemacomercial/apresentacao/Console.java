@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.sistemacomercial.apresentacao;
 
+import br.edu.ifnmg.logicaaplicacao.ErroValidacaoException;
 import br.edu.ifnmg.logicaaplicacao.Funcao;
 import br.edu.ifnmg.logicaaplicacao.Genero;
 import br.edu.ifnmg.logicaaplicacao.PessoaEmail;
@@ -13,10 +14,15 @@ import br.edu.ifnmg.logicaaplicacao.PessoaJuridica;
 import br.edu.ifnmg.logicaaplicacao.PessoaTelefone;
 import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.Produto;
+import br.edu.ifnmg.logicaaplicacao.ProdutoAplicacao;
+import br.edu.ifnmg.logicaaplicacao.ProdutoFinalidade;
+import br.edu.ifnmg.logicaaplicacao.Status;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
 import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
 import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
+import br.edu.ifnmg.logicaaplicacao.UnidadeCompra;
+import br.edu.ifnmg.logicaaplicacao.UnidadeVenda;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaFisicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaJuridicaDAO;
@@ -31,7 +37,7 @@ import java.math.BigDecimal;
  */
 public class Console {
 
-    public static void criarBase(){
+    public static void criarBase() throws ErroValidacaoException{
        //DAOs
        UsuarioDAO  repoUsuario = new UsuarioDAO();
        PessoaFisicaDAO repoPFisica = new PessoaFisicaDAO();
@@ -43,61 +49,67 @@ public class Console {
        Usuario u = new Usuario();
        u.setNome("Maria P");
        u.setFuncao(Funcao.Atendente);
-       u.setCpf("11122233344");
+       u.setCpf("11111111111");
        u.setLogin("maria");
        u.setSenha("123");
        u.setSexo(Genero.Feminino);
+       u.setStatus(Status.Ativo);
        repoUsuario.Salvar(u);
        
        Usuario ua = new Usuario();
        ua.setNome("José R");
        ua.setFuncao(Funcao.Caixa);
-       ua.setCpf("11122233343");
+       ua.setCpf("22222222222");
        ua.setLogin("jose");
        ua.setSenha("123");
        ua.setSexo(Genero.Masculino);
+       ua.setStatus(Status.Ativo);
        repoUsuario.Salvar(ua);
        
        Usuario ub = new Usuario();
        ub.setNome("Pablo B");
        ub.setFuncao(Funcao.Gerente);
-       ub.setCpf("11122233353");
+       ub.setCpf("33333333333");
        ub.setLogin("pablo");
        ub.setSenha("123");
        ub.setSexo(Genero.Outro);
+       ub.setStatus(Status.Ativo);
        repoUsuario.Salvar(ub);
        
        //criando pessoaFisica
        PessoaFisica pf = new PessoaFisica();
        pf.setNome("Ana Maria B");
        pf.setGenero(Genero.Feminino);
-       pf.setCpf("12345678909");
+       pf.setCpf("44444444444");
        pf.setRg("MG0198764");
        pf.setTipo(PessoaTipo.Fisica);
        pf.addTelefone(new PessoaTelefone(pf, "111111111"));
        pf.addEmail(new PessoaEmail(pf, "email@gmail.com"));
        pf.addTelefone(new PessoaTelefone(pf, "222222222"));
        pf.addEmail(new PessoaEmail(pf, "teste@gmail.com"));
+       pf.setStatus(Status.Ativo);
        repoPFisica.Salvar(pf);
        
        PessoaFisica pfA = new PessoaFisica();
        pfA.setNome("João Marcelo B");
        pfA.setGenero(Genero.Masculino);
-       pfA.setCpf("12345678900");
+       pfA.setCpf("55555555555");
        pfA.setRg("MG0198774");
        pfA.setTipo(PessoaTipo.Fisica);
        pfA.addTelefone(new PessoaTelefone(pfA, "111111122"));
        pfA.addEmail(new PessoaEmail(pfA, "email@gmail.com"));
+       pfA.setStatus(Status.Ativo);
        repoPFisica.Salvar(pfA);
        
        PessoaFisica pfB = new PessoaFisica();
        pfB.setNome("Angelo Junior Pereira");
        pfB.setGenero(Genero.Masculino);
-       pfB.setCpf("12345888909");
+       pfB.setCpf("77777777777");
        pfB.setRg("MG0198784");
        pfB.setTipo(PessoaTipo.Fisica);
        pfB.addTelefone(new PessoaTelefone(pfB, "111111133"));
        pfB.addEmail(new PessoaEmail(pfB, "email@gmail.com"));
+       pfB.setStatus(Status.Ativo);
        repoPFisica.Salvar(pfB);
        
        
@@ -115,6 +127,7 @@ public class Console {
 //       pj.setRepresentante(pf);
        pj.addTelefone(new PessoaTelefone(pj, "111111441"));
        pj.addEmail(new PessoaEmail(pj, "email@gmail.com"));
+       pj.setStatus(Status.Ativo);
        repoPJuridica.Salvar(pj);
        
        PessoaJuridica pjA = new PessoaJuridica();
@@ -129,7 +142,8 @@ public class Console {
        pjA.setComplemento("Não há");
 //       pj.setRepresentante(pf);
        pjA.addTelefone(new PessoaTelefone(pjA, "111111551"));
-       pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));       
+       pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));  
+       pjA.setStatus(Status.Ativo);
        repoPJuridica.Salvar(pjA);
        
        //criando produtos
@@ -138,27 +152,55 @@ public class Console {
        pdt.setValorUnitario(new BigDecimal("3.5"));
        pdt.setEstoque(100);
        pdt.setUsuario(ua);
+       pdt.setFinalidade(ProdutoFinalidade.Limpar);
+       pdt.setAplicacao(ProdutoAplicacao.Capilar);
+       pdt.setUnidcompra(UnidadeCompra.Caixa);
+       pdt.setRazaocompra(15);
+       pdt.setUnidvenda(UnidadeVenda.Unidade);
+       pdt.setRazaovenda(1);
+       pdt.setStatus(Status.Ativo);
        repoProduto.Salvar(pdt);
        
        Produto pdtA = new Produto();
        pdtA.setNome("Condicionar Bio");
        pdtA.setValorUnitario(new BigDecimal("10.0"));
        pdtA.setEstoque(100);
-       pdt.setUsuario(u);
+       pdtA.setUsuario(u);
+       pdtA.setFinalidade(ProdutoFinalidade.Limpar);
+       pdtA.setAplicacao(ProdutoAplicacao.Capilar);
+       pdtA.setUnidcompra(UnidadeCompra.Caixa);
+       pdtA.setRazaocompra(20);
+       pdtA.setUnidvenda(UnidadeVenda.Unidade);
+       pdtA.setRazaovenda(1);
+       pdtA.setStatus(Status.Ativo);
        repoProduto.Salvar(pdtA);
        
        Produto pdtB = new Produto();
        pdtB.setNome("Creme de Pentear");
        pdtB.setValorUnitario(new BigDecimal("5.5"));
        pdtB.setEstoque(100);
-       pdt.setUsuario(ub);
+       pdtB.setUsuario(ub);
+       pdtB.setFinalidade(ProdutoFinalidade.Limpar);
+       pdtB.setAplicacao(ProdutoAplicacao.Capilar);
+       pdtB.setUnidcompra(UnidadeCompra.Caixa);
+       pdtB.setRazaocompra(30);
+       pdtB.setUnidvenda(UnidadeVenda.Unidade);
+       pdtA.setStatus(Status.Ativo);
+       pdtB.setRazaovenda(1);
        repoProduto.Salvar(pdtB);
        
        Produto pdtC = new Produto();
        pdtC.setNome("Creme de pele");
        pdtC.setValorUnitario(new BigDecimal("5.5"));
        pdtC.setEstoque(100);
-       pdt.setUsuario(u);
+       pdtC.setUsuario(u);
+       pdtC.setFinalidade(ProdutoFinalidade.Perfumar);
+       pdtC.setAplicacao(ProdutoAplicacao.Pele);
+       pdtC.setUnidcompra(UnidadeCompra.Caixa);
+       pdtC.setRazaocompra(15);
+       pdtC.setUnidvenda(UnidadeVenda.Unidade);
+       pdtC.setRazaovenda(1);
+       pdt.setStatus(Status.Ativo);
        repoProduto.Salvar(pdtC);
        
        
@@ -202,8 +244,8 @@ public class Console {
     }    
     
     
-    public static void main(String[] args) {//throws ErroValidacaoException {   
-//        //problemas para salvar as transacoes
+    public static void main(String[] args) throws ErroValidacaoException {//throws ErroValidacaoException {   
+
         criarBase();
 //   
 //        PessoaFisicaRepositorio repo_pf = new PessoaFisicaDAO();
