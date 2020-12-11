@@ -39,13 +39,25 @@ public class PessoaFisicaDAO
                 filtros += "pf.nome like :nome";
                 parametros.put("nome", obj.getNome() + "%");
             }
-
+            
+            if(obj.getId() > 0){
+                if(filtros.length() > 0) filtros += " and ";
+                filtros += "pf.id = :id";
+                parametros.put("id", obj.getId());
+            }
+            
             if(obj.getGenero() != null){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "pf.genero = :genero";
                 parametros.put("genero", obj.getGenero());
             }
-
+            
+            if(obj.getTipo().toString() == "Física"){
+                if(filtros.length() > 0) filtros += " and ";
+                filtros += "pf.tipo = :tipo";
+                parametros.put("tipo", obj.getTipo());
+            }
+            
             if(obj.getRg()!= null){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "pf.rg like :rg";

@@ -23,6 +23,7 @@ public class RepositorioFactory {
     private static Properties propriedades = new Properties();
     
     private static UsuarioRepositorio usuario;
+    private static PessoaRepositorio pessoa;
     private static PessoaFisicaRepositorio pessoafisica;
     private static PessoaJuridicaRepositorio pessoajuridica;
     private static ProdutoRepositorio produto;
@@ -71,7 +72,15 @@ public class RepositorioFactory {
         return usuario;
     }
     
-     public static PessoaFisicaRepositorio getPessoaFisicaRepositorio() {
+    public static PessoaRepositorio getPessoaRepositorio() {
+        if(pessoa == null){
+            String nomeclasse = propriedades.getProperty("PessoaRepositorio");
+            pessoa = (PessoaRepositorio) getInstancia(nomeclasse);
+        }
+        return pessoa;
+    }
+    
+    public static PessoaFisicaRepositorio getPessoaFisicaRepositorio() {
         if(pessoafisica == null){
             String nomeclasse = propriedades.getProperty("PessoaFisicaRepositorio");
             pessoafisica = (PessoaFisicaRepositorio) getInstancia(nomeclasse);
@@ -79,7 +88,7 @@ public class RepositorioFactory {
         return pessoafisica;
     }
      
-     public static PessoaJuridicaRepositorio getPessoaJuridicaRepositorio() {
+    public static PessoaJuridicaRepositorio getPessoaJuridicaRepositorio() {
         if(pessoajuridica == null){
             String nomeclasse = propriedades.getProperty("PessoaJuridicaRepositorio");
             pessoajuridica = (PessoaJuridicaRepositorio) getInstancia(nomeclasse);

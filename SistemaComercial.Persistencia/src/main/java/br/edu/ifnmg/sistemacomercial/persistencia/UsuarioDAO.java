@@ -78,6 +78,7 @@ public class UsuarioDAO
     @Override
     public boolean apagarUsuario(String login) {
         Query jpql =  this.manager.createQuery("delete from Usuario o where o.login = :login");
+        jpql.setParameter("login", login);
         
         if(jpql.executeUpdate()>0)
             return true;

@@ -35,27 +35,11 @@ public class PessoaDAO
             if(obj.getNome().length() > 0){
                 filtros += "p.nome like :nome";
                 parametros.put("nome", obj.getNome() + "%");
-            }
-
-            if(obj.getTipo() != null){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "p.tipo = :tipo";
-                parametros.put("tipo", obj.getTipo());
             } 
             if(obj.getId() != null){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "p.id = :id";
                 parametros.put("id", obj.getId());
-            } 
-            if(obj.getTelefones() != null){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "p.telefones = :telefones";
-                parametros.put("telefones", obj.getTelefones());
-            } 
-            if(obj.getEmails() != null){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "p.emails = :emails";
-                parametros.put("emails", obj.getEmails());
             } 
         }
         

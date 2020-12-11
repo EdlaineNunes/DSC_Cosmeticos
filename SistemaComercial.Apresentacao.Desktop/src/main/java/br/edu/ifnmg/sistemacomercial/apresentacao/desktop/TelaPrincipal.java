@@ -31,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JSistema = new javax.swing.JMenu();
         JCadastros = new javax.swing.JMenu();
         JMIUsuario = new javax.swing.JMenuItem();
+        JMIPessoaFisica = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Comercial");
@@ -47,6 +48,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         JCadastros.add(JMIUsuario);
+
+        JMIPessoaFisica.setText("Pessoa Física");
+        JMIPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIPessoaFisicaActionPerformed(evt);
+            }
+        });
+        JCadastros.add(JMIPessoaFisica);
 
         jMenuBar1.add(JCadastros);
 
@@ -72,6 +81,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_JMIUsuarioActionPerformed
+
+    private void JMIPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPessoaFisicaActionPerformed
+        // TODO add your handling code here:
+        PessoaFisicaBuscar tela = new PessoaFisicaBuscar();
+        this.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMIPessoaFisicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,6 +126,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JCadastros;
+    private javax.swing.JMenuItem JMIPessoaFisica;
     private javax.swing.JMenuItem JMIUsuario;
     private javax.swing.JMenu JSistema;
     private javax.swing.JMenuBar jMenuBar1;

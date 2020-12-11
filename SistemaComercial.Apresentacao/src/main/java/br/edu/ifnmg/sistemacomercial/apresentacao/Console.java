@@ -251,8 +251,11 @@ public class Console {
         //criarBase();
         UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
         
-        Usuario u = repo.Abrir(51L);
-        if (repo.Apagar(u))
+        //Usuario u = repo.Abrir(51L);
+        Usuario u = repo.Abrir(251L);
+        String pesq = u.getLogin();
+        System.out.println(pesq);
+        if (repo.apagarUsuario(pesq))
             System.out.println("SUCESSO");
         else
             System.out.println("ERRO");
