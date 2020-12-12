@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.sistemacomercial.persistencia;
 
+import br.edu.ifnmg.logicaaplicacao.Status;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
 import java.util.List;
 import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
@@ -25,9 +26,11 @@ public class UsuarioDAO
 
     @Override
     public boolean autenticacao(String login, String senha) {
-        Query sql =  this.manager.createQuery("select o from Usuario o where o.login = :login and o.senha = :senha");
+        Query sql =  this.manager.createQuery("select o from Usuario o where "
+                + "o.login = :login and o.senha = :senha and o.status = :status");
         sql.setParameter("login", login);
         sql.setParameter("senha", senha);
+        sql.setParameter("status", Status.Ativo);
         
         if(sql.getResultList().size() > 0)
             return true;
@@ -83,6 +86,16 @@ public class UsuarioDAO
         if(jpql.executeUpdate()>0)
             return true;
         return false;
+    }
+
+    @Override
+    public Usuario nome(String login) {
+        Query sql =  this.manager.createQuery("select o from Usuario o where "
+                + "o.login = :login");
+        sql.setParameter("login", login);
+        
+        return (Usuario)sql.getSingleResult();
+        
     }
     
 }

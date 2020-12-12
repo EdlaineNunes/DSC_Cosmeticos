@@ -29,6 +29,8 @@ public class RepositorioFactory {
     private static ProdutoRepositorio produto;
     private static TransacaoRepositorio transacao;
     
+    private static PessoaTelefoneRepositorio pessoaTelefone;
+    
     static {
         FileReader leitorArquivo = null;
         
@@ -78,6 +80,14 @@ public class RepositorioFactory {
             pessoa = (PessoaRepositorio) getInstancia(nomeclasse);
         }
         return pessoa;
+    }
+    
+    public static PessoaTelefoneRepositorio getPessoaTelefoneRepositorio() {
+        if(pessoaTelefone == null){
+            String nomeclasse = propriedades.getProperty("PessoaTelefoneRepositorio");
+            pessoaTelefone = (PessoaTelefoneRepositorio) getInstancia(nomeclasse);
+        }
+        return pessoaTelefone;
     }
     
     public static PessoaFisicaRepositorio getPessoaFisicaRepositorio() {

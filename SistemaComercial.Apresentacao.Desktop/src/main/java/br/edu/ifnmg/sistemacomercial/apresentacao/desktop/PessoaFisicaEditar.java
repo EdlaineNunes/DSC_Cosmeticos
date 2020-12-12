@@ -45,8 +45,8 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
         this.txtRG.setText(this.pessoa.getRg());
         this.cbxGenero.setSelectedItem(this.pessoa.getGenero().name());
         
-        atualizarTelefones();
-        atualizarEmail();
+        //atualizarTelefones();
+       // atualizarEmail();
     }
     
     private void getComponentes(){
@@ -56,8 +56,8 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
         this.pessoa.setRg(this.txtRG.getText());
         this.pessoa.setGenero(Genero.valueOf(this.cbxGenero.getSelectedItem().toString()));
         
-        atualizarTelefones();
-        atualizarEmail();
+        //atualizarTelefones();
+        //atualizarEmail();
         
     }
     

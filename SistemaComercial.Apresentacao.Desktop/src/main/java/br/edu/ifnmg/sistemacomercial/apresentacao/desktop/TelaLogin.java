@@ -6,6 +6,7 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
+import br.edu.ifnmg.logicaaplicacao.Usuario;
 import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
 import javax.swing.JOptionPane;
 
@@ -115,8 +116,13 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String login = txtLogin.getText();
         String senha = String.valueOf(txtSenha.getPassword());
+        Usuario user = new Usuario();
         
         if(usuarioRepo.autenticacao(login, senha)){
+            user = usuarioRepo.nome(login);
+            JOptionPane.showMessageDialog(null, "Seja bem vindo(a) " + user.getNome() + "!", "Bem Vindo!",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);
         
