@@ -29,9 +29,11 @@ public class PessoaFisicaDAO
 //        Query consulta = this.manager.createQuery("select pf from PessoaFisica");
 //        return consulta.getResultList();
         
-        String jpql = "select pf from PessoaFisica pf";
+        String jpql = "select pf from PessoaFisica pf ";
         String filtros = "";
         Hashtable<String, Object> parametros = new Hashtable<>();
+        //tipo constante aqui
+        //parametros.put("tipo", PessoaTipo.Fisica.ordinal());
         
         if(obj != null){
         
@@ -46,19 +48,13 @@ public class PessoaFisicaDAO
                 parametros.put("id", obj.getId());
             }
             
-            if(obj.getGenero() != null){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "pf.genero = :genero";
-                parametros.put("genero", obj.getGenero());
-            }
-            
-            if(obj.getTipo().toString() == "Física"){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "pf.tipo = :tipo";
-                parametros.put("tipo", obj.getTipo());
-            }
-            
-            if(obj.getRg()!= null){
+//            if(obj.getGenero() != null){
+//                if(filtros.length() > 0) filtros += " and ";
+//                filtros += "pf.genero = :genero";
+//                parametros.put("genero", obj.getGenero());
+//            }
+
+            if(obj.getRg()!= null && !obj.getRg().isEmpty()){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "pf.rg like :rg";
                 parametros.put("rg", obj.getRg() + "%");
@@ -68,6 +64,7 @@ public class PessoaFisicaDAO
         
         if(filtros.length() > 0)
             jpql = jpql + " where " + filtros;
+            
         
         Query consulta = this.manager.createQuery(jpql);
         

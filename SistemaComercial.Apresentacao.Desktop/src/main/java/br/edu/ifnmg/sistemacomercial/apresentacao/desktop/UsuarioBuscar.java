@@ -54,11 +54,12 @@ public class UsuarioBuscar extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Buscar Usuários");
 
-        txtLogin.setToolTipText("Insira o Login do Usuário");
+        txtLogin.setToolTipText("Insira o Login do Usuário!");
 
         lblLogin.setText("Login:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("Clique para buscar o(s) Usuário(s).");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -66,6 +67,7 @@ public class UsuarioBuscar extends javax.swing.JInternalFrame {
         });
 
         btnNovoUsuario.setText("Novo Usuário");
+        btnNovoUsuario.setToolTipText("Clique para criar um Novo Usuário!");
         btnNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoUsuarioActionPerformed(evt);
@@ -73,6 +75,7 @@ public class UsuarioBuscar extends javax.swing.JInternalFrame {
         });
 
         btnLimpar.setText("Limpar");
+        btnLimpar.setToolTipText("Clique para limpar a busca!");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -102,7 +105,7 @@ public class UsuarioBuscar extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblResultado.setToolTipText("");
+        tblResultado.setToolTipText("Usuário(s) buscado(s).");
         tblResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblResultadoMouseClicked(evt);

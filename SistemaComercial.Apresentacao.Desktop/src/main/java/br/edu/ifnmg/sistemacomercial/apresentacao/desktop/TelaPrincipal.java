@@ -5,16 +5,19 @@
  */
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
+import br.edu.ifnmg.logicaaplicacao.Pessoa;
+
 /**
  *
  * @author edlaine
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    Pessoa pessoa;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+        pessoa = new Pessoa();
         initComponents();
     }
 
@@ -32,6 +35,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JCadastros = new javax.swing.JMenu();
         JMIUsuario = new javax.swing.JMenuItem();
         JMIPessoaFisica = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        JMITelefone = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Comercial");
@@ -59,17 +64,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(JCadastros);
 
+        jMenu1.setText("Contatos");
+
+        JMITelefone.setText("Telefones");
+        JMITelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMITelefoneActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMITelefone);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1240, Short.MAX_VALUE)
+            .addGap(0, 1270, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 618, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,6 +105,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_JMIPessoaFisicaActionPerformed
+
+    private void JMITelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMITelefoneActionPerformed
+        // TODO add your handling code here:
+        PessoaTelefoneTela tela = new PessoaTelefoneTela(new Pessoa());
+        tela.getParent().add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMITelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,8 +151,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JCadastros;
     private javax.swing.JMenuItem JMIPessoaFisica;
+    private javax.swing.JMenuItem JMITelefone;
     private javax.swing.JMenuItem JMIUsuario;
     private javax.swing.JMenu JSistema;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

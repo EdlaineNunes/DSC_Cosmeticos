@@ -5,6 +5,8 @@
  */
 package br.edu.ifnmg.logicaaplicacao;
 
+import java.util.List;
+
 /**
  *
  * @author edlaine
@@ -12,4 +14,5 @@ package br.edu.ifnmg.logicaaplicacao;
 public interface PessoaRepositorio 
         extends Repositorio<Pessoa>{
     public Pessoa AbrirPorTipo(PessoaTipo tipo);
+    public List<Pessoa> AbrirTodos(Pessoa obj, PessoaTipo tipo);
 }

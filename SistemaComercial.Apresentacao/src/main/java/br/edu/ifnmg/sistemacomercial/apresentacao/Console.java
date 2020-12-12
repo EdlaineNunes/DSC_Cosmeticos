@@ -16,7 +16,6 @@ import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.Produto;
 import br.edu.ifnmg.logicaaplicacao.ProdutoAplicacao;
 import br.edu.ifnmg.logicaaplicacao.ProdutoFinalidade;
-import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.Status;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
 import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
@@ -25,7 +24,6 @@ import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
 import br.edu.ifnmg.logicaaplicacao.UnidadeCompra;
 import br.edu.ifnmg.logicaaplicacao.UnidadeVenda;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
-import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaFisicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.PessoaJuridicaDAO;
 import br.edu.ifnmg.sistemacomercial.persistencia.ProdutoDAO;
@@ -249,18 +247,17 @@ public class Console {
     public static void main(String[] args) throws ErroValidacaoException {//throws ErroValidacaoException {   
 
         //criarBase();
-        UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
-        
-        //Usuario u = repo.Abrir(51L);
-        Usuario u = repo.Abrir(251L);
-        String pesq = u.getLogin();
-        System.out.println(pesq);
-        if (repo.apagarUsuario(pesq))
-            System.out.println("SUCESSO");
-        else
-            System.out.println("ERRO");
-        
-        
+//        UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
+//        
+//        //Usuario u = repo.Abrir(51L);
+//        Usuario u = repo.Abrir(251L);
+//        String pesq = u.getLogin();
+//        System.out.println(pesq);
+//        if (repo.apagarUsuario(pesq))
+//            System.out.println("SUCESSO");
+//        else
+//            System.out.println("ERRO");
+
         
 //   
 //        PessoaFisicaRepositorio repo_pf = new PessoaFisicaDAO();

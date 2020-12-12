@@ -24,8 +24,8 @@ public class Editar extends javax.swing.JInternalFrame {
     /**
      * Creates new form Editar
      */
-    public Editar(Usuario u) {
-        this.usuario = u;
+    public Editar() {
+        this.usuario = new Usuario();
         repositorio = RepositorioFactory.getUsuarioRepositorio();
         initComponents();
         this.setComponentes();
@@ -209,6 +209,13 @@ public class Editar extends javax.swing.JInternalFrame {
             }
         }else{
             JOptionPane.showMessageDialog(this, "Operação Cancelada","Informação!",JOptionPane.INFORMATION_MESSAGE);
+            
+            
+            
+            
+            
+            
+            
         }    }//GEN-LAST:event_btnSalvarActionPerformed
 
 

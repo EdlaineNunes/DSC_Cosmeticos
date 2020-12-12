@@ -83,6 +83,7 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Editar Usuário");
+        setToolTipText("Editar Usuário.");
 
         lblLogin.setText("Login:");
 
@@ -100,22 +101,36 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
 
         lblStatus.setText("Status:");
 
+        txtCPF.setToolTipText("CPF do Usuário.");
+
+        txtNome.setToolTipText("Nome do Usuário.");
+
+        txtLogin.setToolTipText("Login do Usuário.");
+
         cbxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Transgênero", "Outro" }));
+        cbxGenero.setToolTipText("Gênero do Usuário.");
 
         cbxFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atendente", "Caixa", "Gerente" }));
+        cbxFuncao.setToolTipText("Função atual do Usuário.");
 
         cbxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+        cbxStatus.setToolTipText("Status atual do Usuário.");
 
         btnSalvar.setText("SALVAR");
+        btnSalvar.setToolTipText("Clique para SALVAR os dados de Usuário.");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
 
+        txtSenha.setToolTipText("Senha do Usuário.");
+
         lblIDUsuario.setText("0");
+        lblIDUsuario.setToolTipText("ID do Usuário.");
 
         btnRemover.setText("REMOVER");
+        btnRemover.setToolTipText("Clique para REMOVER o Usuário atual.");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoverActionPerformed(evt);
@@ -123,6 +138,7 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
         });
 
         bntCancelar.setText("CANCELAR");
+        bntCancelar.setToolTipText("Clique para CANCELAR a operação.");
         bntCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntCancelarActionPerformed(evt);
@@ -164,21 +180,19 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
                             .addComponent(lblSenha)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtSenha))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblStatus)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cbxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblFuncao)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cbxFuncao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblGenero)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(54, 54, 54))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblStatus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblFuncao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbxFuncao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblGenero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -249,9 +263,6 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o usuário atual?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
-//            Long id = Long.parseLong( lblIDUsuario.getText().toString() );
-//            Usuario u = repositorio.Abrir(id);
-//            if(repositorio.apagarUsuario(u.getLogin())){
             if(repositorio.Apagar(this.usuario)){
                 this.setVisible(false);
             } else {

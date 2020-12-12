@@ -47,11 +47,7 @@ public class Pessoa implements Serializable {
     
     @Enumerated(EnumType.ORDINAL)
     private PessoaTipo tipo;
-    
-    //controle de concorrencia
-    @Version
-    private int version;
-    
+       
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy= "pessoa")
     private List<PessoaTelefone> telefones;
@@ -62,16 +58,19 @@ public class Pessoa implements Serializable {
     
     @Enumerated(EnumType.STRING)
     private Status status;
+    
+    @Version
+    private int version;
 
     public Pessoa() {
         super();
         this.id = 0L;
         this.nome="";
         this.tipo = PessoaTipo.Fisica;
-        this.version = 1;
         this.telefones = new ArrayList<>();
         this.emails = new ArrayList<>();
         this.status = Status.Ativo;
+        this.version = 1;
     }
     
     public Pessoa(Long id, String nome, PessoaTipo tipo) {
@@ -79,10 +78,11 @@ public class Pessoa implements Serializable {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
-        this.version = version;
         this.telefones = new ArrayList<>();
         this.emails = new ArrayList<>();
         this.status = Status.Ativo;
+        this.version = 1;
+
     }
    
     public Long getId() {
@@ -107,14 +107,6 @@ public class Pessoa implements Serializable {
 
     public void setTipo(PessoaTipo tipo) {
         this.tipo = tipo;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
     }
 
     public List<PessoaTelefone> getTelefones() {
@@ -172,16 +164,24 @@ public class Pessoa implements Serializable {
         this.status = status;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersao(int version) {
+        this.version = version;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.id);
-        hash = 73 * hash + Objects.hashCode(this.nome);
-        hash = 73 * hash + Objects.hashCode(this.tipo);
-        hash = 73 * hash + this.version;
-        hash = 73 * hash + Objects.hashCode(this.telefones);
-        hash = 73 * hash + Objects.hashCode(this.emails);
-        hash = 73 * hash + Objects.hashCode(this.status);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.tipo);
+        hash = 59 * hash + Objects.hashCode(this.telefones);
+        hash = 59 * hash + Objects.hashCode(this.emails);
+        hash = 59 * hash + Objects.hashCode(this.status);
+        hash = 59 * hash + this.version;
         return hash;
     }
 

@@ -6,8 +6,8 @@
 package br.edu.ifnmg.sistemacomercial.persistencia;
 
 import br.edu.ifnmg.logicaaplicacao.Transacao;
-import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 import java.util.List;
+import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 
 /**
  *

@@ -8,13 +8,15 @@ package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
-import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
+import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 
 /**
  *
@@ -23,15 +25,20 @@ import javax.swing.table.DefaultTableModel;
 public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
     PessoaFisicaRepositorio repositorio;
     PessoaFisica pfisica;
+    Pessoa pessoa;
+    PessoaRepositorio repopessoa;
     /**
      * Creates new form PessoaFisicaEditar
      */
     public PessoaFisicaBuscar() {
         this.repositorio = RepositorioFactory.getPessoaFisicaRepositorio();
         this.pfisica = new PessoaFisica();
+        
+        this.repopessoa = RepositorioFactory.getPessoaRepositorio();
+        this.pessoa = new Pessoa();
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,14 +55,17 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblResultado = new javax.swing.JTable();
-        btnTelefones = new javax.swing.JButton();
-        btnEmails = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Buscar Pessoa Física");
+        setToolTipText("Buscar Pessoa Física.");
 
         lblNome.setText("Nome:");
 
+        txtNome.setToolTipText("Insira o nome para a busca.");
+
         bntBuscar.setText("BUSCAR");
+        bntBuscar.setToolTipText("Clique para efetuar a busca.");
         bntBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntBuscarActionPerformed(evt);
@@ -63,6 +73,7 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         });
 
         btnNovaPFisica.setText("NOVO CADASTRO");
+        btnNovaPFisica.setToolTipText("Clique para criar um Novo Cadastro.");
         btnNovaPFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaPFisicaActionPerformed(evt);
@@ -70,6 +81,7 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         });
 
         btnLimpar.setText("LIMPAR");
+        btnLimpar.setToolTipText("Clique para limpar os filtros da busca.");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -87,66 +99,70 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(tblResultado);
 
-        btnTelefones.setText("Buscar Telefones");
-        btnTelefones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTelefonesActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        btnEmails.setText("Buscar Emails");
+        tblResultado.setToolTipText("Dados da Pessoa Física.");
+        tblResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblResultadoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblResultado);
+        if (tblResultado.getColumnModel().getColumnCount() > 0) {
+            tblResultado.getColumnModel().getColumn(0).setResizable(false);
+            tblResultado.getColumnModel().getColumn(1).setResizable(false);
+            tblResultado.getColumnModel().getColumn(2).setResizable(false);
+            tblResultado.getColumnModel().getColumn(3).setResizable(false);
+            tblResultado.getColumnModel().getColumn(4).setResizable(false);
+            tblResultado.getColumnModel().getColumn(5).setResizable(false);
+            tblResultado.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(lblNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(bntBuscar)
-                .addGap(26, 26, 26)
-                .addComponent(btnNovaPFisica)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTelefones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEmails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(84, 84, 84))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(lblNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(bntBuscar)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnNovaPFisica)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNome)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntBuscar)
-                            .addComponent(btnNovaPFisica)
-                            .addComponent(btnLimpar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnTelefones)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(btnEmails)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bntBuscar)
+                    .addComponent(btnNovaPFisica)
+                    .addComponent(btnLimpar))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +170,10 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
 
     private void btnNovaPFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPFisicaActionPerformed
         // TODO add your handling code here:
+        PessoaFisicaEditar tela = new PessoaFisicaEditar(new PessoaFisica());
+        this.getParent().add(tela);
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnNovaPFisicaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -175,6 +195,7 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
             
             //adicionando os dados na tabela
             tblResultado.setModel(modelo);
+            
         }
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -210,23 +231,27 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         
         //adicionando os dados na tabela
         tblResultado.setModel(modelo);
-
+        
     }//GEN-LAST:event_bntBuscarActionPerformed
-
-    private void btnTelefonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonesActionPerformed
+    
+    private void tblResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMouseClicked
         // TODO add your handling code here:
-        PessoaTelefone tela = new PessoaTelefone();
-        tela.getParent().add(tela);
+        int linha = tblResultado.getSelectedRow();
+        Long id = Long.parseLong(tblResultado.getValueAt(linha, 0).toString());
+        
+        PessoaFisica pf = repositorio.Abrir(id);
+        
+        PessoaFisicaEditar tela = new PessoaFisicaEditar(pf);
+        this.getParent().add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_btnTelefonesActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_tblResultadoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntBuscar;
-    private javax.swing.JButton btnEmails;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNovaPFisica;
-    private javax.swing.JButton btnTelefones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JTable tblResultado;

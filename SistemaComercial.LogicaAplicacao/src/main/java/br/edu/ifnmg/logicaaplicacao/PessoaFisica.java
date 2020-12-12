@@ -43,6 +43,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
 
     public PessoaFisica() {
         super();
+        this.setTipo(PessoaTipo.Fisica);
         this.cpf= "";
         this.rg = "";
         this.genero = Genero.Feminino;

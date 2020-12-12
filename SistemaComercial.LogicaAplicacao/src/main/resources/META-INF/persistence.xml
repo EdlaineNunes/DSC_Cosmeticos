@@ -4,15 +4,15 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifnmg.logicaaplicacao.Usuario</class>
     <class>br.edu.ifnmg.logicaaplicacao.Produto</class>
-    <class>br.edu.ifnmg.logicaaplicacao.Pessoa</class>
-    <class>br.edu.ifnmg.logicaaplicacao.Transacao</class>
     <class>br.edu.ifnmg.logicaaplicacao.TransacaoItem</class>
-    <class>br.edu.ifnmg.logicaaplicacao.PessoaFisica</class>
-    <class>br.edu.ifnmg.logicaaplicacao.PessoaJuridica</class>
-    <class>br.edu.ifnmg.logicaaplicacao.PessoaTelefone</class>
-    <class>br.edu.ifnmg.logicaaplicacao.PessoaEmail</class>
     <class>br.edu.ifnmg.logicaaplicacao.ProdutoFinalidade</class>
     <class>br.edu.ifnmg.logicaaplicacao.ProdutoAplicacao</class>
+    <class>br.edu.ifnmg.logicaaplicacao.Pessoa</class>
+    <class>br.edu.ifnmg.logicaaplicacao.PessoaFisica</class>
+    <class>br.edu.ifnmg.logicaaplicacao.PessoaJuridica</class>
+    <class>br.edu.ifnmg.logicaaplicacao.Transacao</class>
+    <class>br.edu.ifnmg.logicaaplicacao.PessoaTelefone</class>
+    <class>br.edu.ifnmg.logicaaplicacao.PessoaEmail</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dsc_cosm?useTimezone=true&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="edlaine"/>
