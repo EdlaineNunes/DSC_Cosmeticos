@@ -60,5 +60,5 @@ public class PessoaDAO
         consulta.setParameter("parametro", tipo);
         return (Pessoa)consulta.getSingleResult();    
     }
-    
+
 }

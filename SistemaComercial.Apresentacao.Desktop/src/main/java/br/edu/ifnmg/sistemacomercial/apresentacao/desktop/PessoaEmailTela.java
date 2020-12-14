@@ -6,39 +6,41 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
-import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
-import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
-import br.edu.ifnmg.logicaaplicacao.PessoaJuridica;
-import br.edu.ifnmg.logicaaplicacao.PessoaJuridicaRepositorio;
+import br.edu.ifnmg.logicaaplicacao.PessoaEmail;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author edlaine
  */
 public class PessoaEmailTela extends javax.swing.JInternalFrame {
-    PessoaFisica pf;
-    PessoaJuridica pj;
-    Pessoa p;
+    PessoaRepositorio repositorio;
+    Pessoa pessoa;
     
-    PessoaRepositorio repopessoa;
-    PessoaFisicaRepositorio repofisica;
-    PessoaJuridicaRepositorio repojuridica;
+    PessoaEmail email;
     /**
-     * Creates new form PessoaEmail
+     * Creates new form PessoaTelefone
      */
     public PessoaEmailTela() {
-        this.p = new Pessoa();
-        this.pf = new PessoaFisica();
-        this.pj = new PessoaJuridica();
+        this.repositorio = RepositorioFactory.getPessoaRepositorio();
+        this.pessoa = new Pessoa();
         
-        this.repopessoa = RepositorioFactory.getPessoaRepositorio();
-        this.repofisica = RepositorioFactory.getPessoaFisicaRepositorio();
-        this.repojuridica = RepositorioFactory.getPessoaJuridicaRepositorio();
+        this.email= new PessoaEmail();
         initComponents();
     }
-
+       
+        
+    private void limparEmails(){
+        txtID.setText("");
+        lblNomePessoa.setText("");
+        
+        DefaultListModel telefones = new DefaultListModel();
+        listEmail.setModel(telefones);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,21 +50,141 @@ public class PessoaEmailTela extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblID = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listEmail = new javax.swing.JList<>();
+        lblNomePessoa = new javax.swing.JLabel();
+
+        setClosable(true);
+        setTitle("Emails");
+        setToolTipText("Emails.");
+
+        lblID.setText("ID:");
+
+        lblNome.setText("Nome:");
+
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnLimpar.setText("LIMPAR");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(listEmail);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNome)
+                        .addGap(145, 145, 145)
+                        .addComponent(lblNomePessoa)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(btnCancelar)))
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblID)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome)
+                    .addComponent(lblNomePessoa))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        Long id = Long.parseLong(txtID.getText().toString());
+            
+        pessoa = repositorio.Abrir(id);
+        if(pessoa != null){
+            //preenche o nome da pessoa
+            lblNomePessoa.setText(pessoa.getNome());
+            
+            //preenche os telefones da pessoa
+            String[] email = new String[pessoa.getEmails().size()];
+            DefaultListModel emails = new DefaultListModel();
+            emails.addAll(pessoa.getEmails());
+            listEmail.setModel(emails);
+        } else{
+            JOptionPane.showMessageDialog(this, "ID Inválido","ERRO!",
+                JOptionPane.ERROR_MESSAGE);
+            limparEmails();
+        }
+              
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        limparEmails();
+        
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Operação Cancelada!","Informação!",
+            JOptionPane.INFORMATION_MESSAGE);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNomePessoa;
+    private javax.swing.JList<PessoaEmail> listEmail;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

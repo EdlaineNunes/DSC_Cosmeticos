@@ -7,9 +7,11 @@ package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ListModel;
 import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
+import br.edu.ifnmg.logicaaplicacao.PessoaTelefone;
+import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,64 +21,24 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
     PessoaRepositorio repositorio;
     Pessoa pessoa;
     
+    PessoaTelefone telefone;
     /**
      * Creates new form PessoaTelefone
      */
     public PessoaTelefoneTela() {
         this.repositorio = RepositorioFactory.getPessoaRepositorio();
         this.pessoa = new Pessoa();
+        
+        this.telefone = new PessoaTelefone();
         initComponents();
     }
-       
-//    private void preencherTelefones() {
-//        pessoa.setId(Long.parseLong( txtID.getText().toString()));
-//        pessoa.setNome(txtNome.getText());
-//        //fazendo a bsuca no rep com o filtro
-//        List<Pessoa> resultado = repositorio.Buscar(pessoa);
-//        
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        //adiciona coluna por coluna
-//        modelo.addColumn("ID");
-//        modelo.addColumn("Nome");
-//        modelo.addColumn("Telefone");
-//          
-//        //para cada aluno da lista 
-//        for (Pessoa pessoa: resultado){
-//            //cria um vetor de linha
-//            Vector linha = new Vector();
-//            //adiciona linha por linha
-//            linha.add(pessoa.getId());
-//            linha.add(pessoa.getNome());
-//            linha.add(pessoa.getTelefones());
-//                        
-//            //adiciona cada linha na tabela
-//            modelo.addRow(linha);
-//        }        
-//        //adiciona o modelo que é a minha tabela na tabela da interface
-//        tblTelefone.setModel(modelo);  
-//    }
-//    
-//    private void limparTelefone(){
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        //adiciona coluna por coluna
-//        modelo.addColumn("ID");
-//        modelo.addColumn("Nome");
-//        modelo.addColumn("Telefone");
-//        
-//        tblTelefone.setModel(modelo);
-//    }
-
-    private void atualizarTelefones(){
-        String[] tel = new String[pessoa.getTelefones().size()];
-        tel = pessoa.getTelefones().toArray(tel);
-        ListModel<String> telefones = new DefaultComboBoxModel<>(tel) ;
-        listTelefone.setModel(telefones);
-     }
     
     private void limparTelefones(){
-        ListModel<String> telefones = new DefaultComboBoxModel<>() ;
+        txtID.setText("");
+        lblNomePessoa.setText("");
+        
+        DefaultListModel telefones = new DefaultListModel();
         listTelefone.setModel(telefones);
-    
     }
     
     /**
@@ -91,15 +53,16 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
         lblID = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        txtNome = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listTelefone = new javax.swing.JList<>();
+        lblNomePessoa = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Telefones");
+        setToolTipText("Telefones.");
 
         lblID.setText("ID:");
 
@@ -113,6 +76,11 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("LIMPAR");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,48 +97,44 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNome)
+                        .addGap(145, 145, 145)
+                        .addComponent(lblNomePessoa)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblID)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLimpar)))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(btnCancelar)))
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblID)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnLimpar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblID)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnLimpar)
                     .addComponent(btnCancelar))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome)
+                    .addComponent(lblNomePessoa))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,21 +142,38 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        Pessoa p = new Pessoa();
-        p.setId(Long.parseLong(txtID.getText().toString()));
-        p.setNome(txtNome.getText());
-        
-        repositorio.Buscar(p);
-        atualizarTelefones();
+        Long id = Long.parseLong(txtID.getText().toString());
+            
+        pessoa = repositorio.Abrir(id);
+        if(pessoa != null){
+            //preenche o nome da pessoa
+            lblNomePessoa.setText(pessoa.getNome());
+            
+            //preenche os telefones da pessoa
+            String[] tel = new String[pessoa.getTelefones().size()];
+            DefaultListModel telefones = new DefaultListModel();
+            telefones.addAll(pessoa.getTelefones());
+            listTelefone.setModel(telefones);
+        } else{
+            JOptionPane.showMessageDialog(this, "ID Inválido","ERRO!",
+                JOptionPane.ERROR_MESSAGE);
+            limparTelefones();
+        }
+              
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtID.setText("");
-        txtNome.setText("");
         limparTelefones();
         
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Operação Cancelada!","Informação!",
+            JOptionPane.INFORMATION_MESSAGE);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -202,8 +183,8 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JList<String> listTelefone;
+    private javax.swing.JLabel lblNomePessoa;
+    private javax.swing.JList<PessoaTelefone> listTelefone;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

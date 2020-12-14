@@ -39,6 +39,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JMIPessoaJuridica = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         JMITelefone = new javax.swing.JMenuItem();
+        JMIEmails = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Comercial");
@@ -83,6 +84,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(JMITelefone);
+
+        JMIEmails.setText("Emails");
+        JMIEmails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIEmailsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMIEmails);
 
         jMenuBar1.add(jMenu1);
 
@@ -130,6 +139,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_JMITelefoneActionPerformed
 
+    private void JMIEmailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIEmailsActionPerformed
+        // TODO add your handling code here:
+        PessoaEmailTela tela = new PessoaEmailTela();
+        this.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMIEmailsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +183,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JCadastros;
+    private javax.swing.JMenuItem JMIEmails;
     private javax.swing.JMenuItem JMIPessoaFisica;
     private javax.swing.JMenuItem JMIPessoaJuridica;
     private javax.swing.JMenuItem JMITelefone;

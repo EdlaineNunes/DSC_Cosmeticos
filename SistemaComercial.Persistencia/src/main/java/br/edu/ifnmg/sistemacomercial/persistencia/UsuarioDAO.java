@@ -10,6 +10,7 @@ import br.edu.ifnmg.logicaaplicacao.Usuario;
 import java.util.List;
 import br.edu.ifnmg.logicaaplicacao.UsuarioRepositorio;
 import java.util.HashMap;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 /**
@@ -80,11 +81,24 @@ public class UsuarioDAO
 
     @Override
     public boolean apagarUsuario(String login) {
-        Query jpql =  this.manager.createQuery("delete from Usuario o where o.login = :login");
-        jpql.setParameter("login", login);
+        String jpql = "delete from Usuario o where o.login = :login";
         
-        if(jpql.executeUpdate()>0)
-            return true;
+        EntityTransaction transaction = this.manager.getTransaction();
+        try{
+            transaction.begin();// inicia a transação
+            
+            Query sql = this.manager.createQuery(jpql);
+            sql.setParameter("login", login);
+
+            if(sql.executeUpdate() > 0){//Até aqui é simulado a transação e não consecutivamente a transação
+                transaction.commit(); // Aqui é relalizado efetivamente a trasanção/ Finalia a transação
+                return true;
+            }
+        }catch(Exception exeption){
+            transaction.rollback();
+            System.out.println("Exceção: " + exeption);
+            return false;
+        }
         return false;
     }
 
