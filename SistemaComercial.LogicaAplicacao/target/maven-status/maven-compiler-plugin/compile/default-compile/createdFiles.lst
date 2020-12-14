@@ -25,7 +25,6 @@ br\edu\ifnmg\logicaaplicacao\PessoaJuridica_.class
 br\edu\ifnmg\logicaaplicacao\ProdutoRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaJuridicaRepositorio.class
 br\edu\ifnmg\logicaaplicacao\PessoaTelefone.class
-br\edu\ifnmg\logicaaplicacao\PessoaTelefoneRepositorio.class
 br\edu\ifnmg\logicaaplicacao\UsuarioRepositorio.class
 br\edu\ifnmg\logicaaplicacao\TransacaoItem.class
 br\edu\ifnmg\logicaaplicacao\ProdutoAplicacao.class

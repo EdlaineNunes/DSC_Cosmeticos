@@ -40,7 +40,13 @@ public class PessoaEmail implements Serializable {
 
     public PessoaEmail() {
         this.id = 0L;
-        this.pessoa = null;
+        this.pessoa = new Pessoa();
+        this.email = "";
+    }
+    
+    public PessoaEmail(Pessoa pessoa) {
+        this.id = 0L;
+        this.pessoa = pessoa;
         this.email = "";
     }
 
@@ -111,6 +117,6 @@ public class PessoaEmail implements Serializable {
 
     @Override
     public String toString() {
-        return pessoa.getNome();
+        return this.email;
     }
 }

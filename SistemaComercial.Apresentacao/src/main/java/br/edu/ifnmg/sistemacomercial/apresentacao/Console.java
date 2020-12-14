@@ -10,12 +10,14 @@ import br.edu.ifnmg.logicaaplicacao.Funcao;
 import br.edu.ifnmg.logicaaplicacao.Genero;
 import br.edu.ifnmg.logicaaplicacao.PessoaEmail;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
+import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
 import br.edu.ifnmg.logicaaplicacao.PessoaJuridica;
 import br.edu.ifnmg.logicaaplicacao.PessoaTelefone;
 import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.Produto;
 import br.edu.ifnmg.logicaaplicacao.ProdutoAplicacao;
 import br.edu.ifnmg.logicaaplicacao.ProdutoFinalidade;
+import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.Status;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
 import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
@@ -76,6 +78,16 @@ public class Console {
        ub.setStatus(Status.Ativo);
        repoUsuario.Salvar(ub);
        
+       Usuario uc = new Usuario();
+       uc.setNome("Administrador");
+       uc.setFuncao(Funcao.Gerente);
+       uc.setCpf("33334433333");
+       uc.setLogin("adm");
+       uc.setSenha("123");
+       uc.setSexo(Genero.Outro);
+       uc.setStatus(Status.Ativo);
+       repoUsuario.Salvar(uc);
+       
        //criando pessoaFisica
        PessoaFisica pf = new PessoaFisica();
        pf.setNome("Ana Maria B");
@@ -124,7 +136,6 @@ public class Console {
        pj.setNumero("55A");
        pj.setCidade("Londrina");
        pj.setComplemento("Não há");
-//       pj.setRepresentante(p1);
        pj.addTelefone(new PessoaTelefone(pj, "111111441"));
        pj.addEmail(new PessoaEmail(pj, "email@gmail.com"));
        pj.setStatus(Status.Ativo);
@@ -140,7 +151,6 @@ public class Console {
        pjA.setNumero("99");
        pjA.setCidade("Feira de Santana");
        pjA.setComplemento("Não há");
- //      pj.setRepresentante(p2);
        pjA.addTelefone(new PessoaTelefone(pjA, "111111551"));
        pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));  
        pjA.setStatus(Status.Ativo);
@@ -209,20 +219,21 @@ public class Console {
        var user1 = repoUsuario.Abrir(1L);
        var user2 = repoUsuario.Abrir(2L);
        var user3 = repoUsuario.Abrir(3L);
+       var user4 = repoUsuario.Abrir(4L);
        
        //pessoaFisica e pessoa Juridica
-       var p1 = repoPFisica.Abrir(4L);
-       var p2 = repoPFisica.Abrir(5L);
-       var p3 = repoPFisica.Abrir(6L);
+       var p1 = repoPFisica.Abrir(5L);
+       var p2 = repoPFisica.Abrir(6L);
+       var p3 = repoPFisica.Abrir(7L);
        
-       var pj1 = repoPJuridica.Abrir(7L);
-       var pj2 = repoPJuridica.Abrir(8L);
+       var pj1 = repoPJuridica.Abrir(8L);       
+       var pj2 = repoPJuridica.Abrir(9L);
        
        //abrir produto
-       var pr1 = repoProduto.Abrir(9L);
-       var pr2 = repoProduto.Abrir(10L);
-       var pr3 = repoProduto.Abrir(11L);
-       var pr4 = repoProduto.Abrir(12L);
+       var pr1 = repoProduto.Abrir(10L);
+       var pr2 = repoProduto.Abrir(11L);
+       var pr3 = repoProduto.Abrir(12L);
+       var pr4 = repoProduto.Abrir(13L);
        
        
        //criar Transacao
@@ -246,7 +257,23 @@ public class Console {
     
     public static void main(String[] args) throws ErroValidacaoException {//throws ErroValidacaoException {   
 
-        //criarBase();
+        criarBase();
+//        PessoaFisicaRepositorio repo = RepositorioFactory.getPessoaFisicaRepositorio();
+//        PessoaFisica p = repo.Abrir(11L);
+//        
+//        if(repo.Apagar(p))
+//            System.out.println("SUCESSO");
+//        else
+//            System.out.println("Erro");
+//        
+//        PessoaRepositorio repo = RepositorioFactory.getPessoaRepositorio();
+//        
+//        Pessoa p = repo.Abrir(7L);
+//        if(repo.Apagar(p))
+//            System.out.println("SUCESSO");
+//        else
+//            System.out.println("ERRO");
+        
 //        UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
 //        
 //        //Usuario u = repo.Abrir(51L);

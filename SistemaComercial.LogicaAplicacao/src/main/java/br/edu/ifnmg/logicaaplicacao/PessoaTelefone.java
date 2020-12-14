@@ -43,7 +43,13 @@ public class PessoaTelefone implements Serializable {
 
     public PessoaTelefone() {
         this.id = 0L;
-        this.pessoa = null;
+        this.pessoa = new Pessoa();
+        this.telefone = "";
+    }
+    
+    public PessoaTelefone(Pessoa pessoa){
+        this.id = 0L;
+        this.pessoa = pessoa;
         this.telefone = "";
     }
 
@@ -113,7 +119,7 @@ public class PessoaTelefone implements Serializable {
     
     @Override
     public String toString() {
-        return pessoa.getNome();
+        return this.telefone;
     }
   
 }

@@ -73,12 +73,7 @@ public class PessoaJuridicaDAO
                 filtros += "pj.cidade like :cidade";
                 parametros.put("cidade", obj.getCidade() + "%");
             }
-            if(obj.getRepresentante()!= null){
-                if(filtros.length() > 0) filtros += " and ";
-                filtros += "pj.representante like :representante";
-                parametros.put("representante", obj.getRepresentante() + "%");
-            }
-        
+                    
         }
         
         if(filtros.length() > 0)

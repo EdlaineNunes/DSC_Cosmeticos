@@ -22,10 +22,7 @@ import javax.persistence.Version;
 @Entity
 @DiscriminatorValue(value = "2")
 public class PessoaJuridica extends Pessoa implements Serializable {
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private PessoaFisica representante;
-    
+   
     @Column (name="razaoSocial", nullable= false, length=250)
     private String razaoSocial;
     
@@ -52,24 +49,23 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 
     public PessoaJuridica(){
         super();
-        this.representante = null;
+        this.setTipo(PessoaTipo.Jurídica);
         this.razaoSocial = "";
         this.cnpj = "";
         this.rua = "";
         this.numero = "";
         this.bairro = "";
-        this.complemento = "";
+        this.complemento = "Não há";
         this.cidade = "";
         this.versao = 1;
     }
     
-    public PessoaJuridica( PessoaFisica representante, String razaoSocial, 
-            String cnpj, String rua, 
-            String numero, String bairro, String complemento, 
+    public PessoaJuridica( String nome, PessoaFisica representante, String razaoSocial, 
+            String cnpj, String rua, String numero, String bairro, String complemento, 
             String cidade) {
         super();
-        //como pegar o representante??
-        this.representante = representante;
+        this.setTipo(PessoaTipo.Jurídica);
+        this.setNome(nome);
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.rua = rua;
@@ -78,14 +74,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         this.complemento = complemento;
         this.cidade = cidade;
         this.versao = versao;
-    }
-
-    public PessoaFisica getRepresentante() {
-        return representante;
-    }
-
-    public void setRepresentante(PessoaFisica representante) {
-        this.representante = representante;
     }
 
     public int getVersao() {

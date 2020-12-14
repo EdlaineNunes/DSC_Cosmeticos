@@ -6,6 +6,7 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Genero;
+import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.PessoaEmail;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
@@ -16,62 +17,68 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author edlaine
  */
 public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
-    PessoaFisica pessoa;
-    PessoaRepositorio repositorio;
+    PessoaFisica pessoaf;
     PessoaFisicaRepositorio repofisica;
-    /**
+    
+    PessoaTelefone telefone;
+    PessoaEmail email;
+    
+   /**
      * Creates new form PessoaFisicaEditar
      */
     public PessoaFisicaEditar(PessoaFisica pf) {
-        this.repositorio = RepositorioFactory.getPessoaRepositorio();
         this.repofisica = RepositorioFactory.getPessoaFisicaRepositorio();
-        this.pessoa = pf;
+        this.pessoaf = pf;
+        
+        this.telefone = new PessoaTelefone();
+        this.email = new PessoaEmail();
         initComponents();
         
         this.setComponentes();
     }
     
     private void setComponentes(){      
-        this.lblIDPessoa.setText(this.pessoa.getId().toString());
-        this.txtNome.setText(this.pessoa.getNome());
-        this.cbxStatus.setSelectedItem(this.pessoa.getStatus().name());
-        this.txtCPF.setText(this.pessoa.getCpf());
-        this.txtRG.setText(this.pessoa.getRg());
-        this.cbxGenero.setSelectedItem(this.pessoa.getGenero().name());
+        this.lblIDPessoa.setText(this.pessoaf.getId().toString());
+        this.txtNome.setText(this.pessoaf.getNome());
+        this.cbxStatus.setSelectedItem(this.pessoaf.getStatus().name());
+        this.txtCPF.setText(this.pessoaf.getCpf());
+        this.txtRG.setText(this.pessoaf.getRg());
+        this.cbxGenero.setSelectedItem(this.pessoaf.getGenero().name());
         
-        //atualizarTelefones();
-       // atualizarEmail();
+        atualizarTelefones();
+        atualizarEmail();
     }
     
     private void getComponentes(){
-        this.pessoa.setNome(this.txtNome.getText());
-        this.pessoa.setStatus(Status.valueOf(this.cbxStatus.getSelectedItem().toString()));
-        this.pessoa.setCpf(this.txtCPF.getText());
-        this.pessoa.setRg(this.txtRG.getText());
-        this.pessoa.setGenero(Genero.valueOf(this.cbxGenero.getSelectedItem().toString()));
+        this.pessoaf.setNome(this.txtNome.getText());
+        this.pessoaf.setStatus(Status.valueOf(this.cbxStatus.getSelectedItem().toString()));
+        this.pessoaf.setCpf(this.txtCPF.getText());
+        this.pessoaf.setRg(this.txtRG.getText());
+        this.pessoaf.setGenero(Genero.valueOf(this.cbxGenero.getSelectedItem().toString()));
         
-        //atualizarTelefones();
-        //atualizarEmail();
+        atualizarTelefones();
+        atualizarEmail();
         
     }
     
     private void atualizarTelefones(){
-        String[] tel = new String[pessoa.getTelefones().size()];
-        tel = pessoa.getTelefones().toArray(tel);
-        ListModel<String> telefones = new DefaultComboBoxModel<>(tel) ;
+        String[] tel = new String[pessoaf.getTelefones().size()];
+        DefaultListModel telefones = new DefaultListModel();
+        telefones.addAll(pessoaf.getTelefones());
         listTelefone.setModel(telefones);
      }
     
     private void atualizarEmail(){
-        String[] email = new String[pessoa.getEmails().size()];
-        email = pessoa.getEmails().toArray(email);
-        ListModel<String> emails = new DefaultComboBoxModel<>(email) ;
+        String[] email = new String[pessoaf.getEmails().size()];
+        DefaultListModel emails = new DefaultListModel();
+        emails.addAll(pessoaf.getEmails());
         listEmail.setModel(emails);
      }
 
@@ -355,8 +362,12 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o usuário atual?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
-            if(repositorio.Apagar(this.pessoa)){
-                this.setVisible(false);
+            if(repofisica.Apagar(this.pessoaf)){
+                
+                JOptionPane.showMessageDialog(this, "Pessoa removida com sucesso!","Sucesso!",
+                    JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);    
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Aconteceu um problema ao remover os dados!","Erro!",
                     JOptionPane.ERROR_MESSAGE);
@@ -376,7 +387,7 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente salvar os dados do Usuário?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
             this.getComponentes();
-            if(repositorio.Salvar(this.pessoa)){
+            if(repofisica.Salvar(this.pessoaf)){
                 JOptionPane.showMessageDialog(this, "Sucesso ao salvar!","Informação!",JOptionPane.INFORMATION_MESSAGE);
                 this.setComponentes();
             }else{
@@ -389,40 +400,51 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
 
     private void btnRemoverEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverEmailActionPerformed
         // TODO add your handling code here:
-        this.pessoa.removeEmail(new PessoaEmail(pessoa, txtEmail.getText()));
+        this.pessoaf.removeEmail(email);
         txtEmail.setText("");
         atualizarEmail();
     }//GEN-LAST:event_btnRemoverEmailActionPerformed
 
     private void btnRemoverTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverTelefoneActionPerformed
         // TODO add your handling code here:
-        this.pessoa.removeTelefone(new PessoaTelefone(pessoa, txtTelefone.getText()));
+        this.pessoaf.removeTelefone(telefone);
         txtTelefone.setText("");
         atualizarTelefones();
     }//GEN-LAST:event_btnRemoverTelefoneActionPerformed
 
     private void btnAdicionarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTelefoneActionPerformed
         // TODO add your handling code here:
-        this.pessoa.addTelefone(new PessoaTelefone(pessoa, txtTelefone.getText()));
+        this.telefone = new PessoaTelefone(pessoaf);
+        this.telefone.setTelefone(txtTelefone.getText());
+        this.pessoaf.addTelefone(telefone);
         txtTelefone.setText("");
         atualizarTelefones();
     }//GEN-LAST:event_btnAdicionarTelefoneActionPerformed
 
     private void btnAdicionarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarEmailActionPerformed
         // TODO add your handling code here:
-        this.pessoa.addEmail(new PessoaEmail(pessoa, txtEmail.getText()));
+        this.email = new PessoaEmail(pessoaf);
+        this.email.setEmail(txtEmail.getText());
+        this.pessoaf.addEmail(email);
         txtEmail.setText("");
         atualizarEmail();
     }//GEN-LAST:event_btnAdicionarEmailActionPerformed
 
     private void listEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEmailMouseClicked
         // TODO add your handling code here:
-        txtEmail.setText( listEmail.getSelectedValue() );
+        int indice = listEmail.getSelectedIndex();
+        this.email = listEmail.getModel().getElementAt(indice);
+        txtEmail.setText( this.email.getEmail() );
     }//GEN-LAST:event_listEmailMouseClicked
 
     private void listTelefoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTelefoneMouseClicked
         // TODO add your handling code here:
-        txtTelefone.setText( listTelefone.getSelectedValue() );
+        //pega o indice de onde está o telefone que foi selecionado
+        int indice = listTelefone.getSelectedIndex();
+        //carrega o elemento que selecionei colocando dentro de telefone
+        this.telefone = listTelefone.getModel().getElementAt(indice);
+        //seleciona
+        txtTelefone.setText( this.telefone.getTelefone() );
     }//GEN-LAST:event_listTelefoneMouseClicked
 
 
@@ -449,8 +471,8 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblRG;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JList<String> listEmail;
-    private javax.swing.JList<String> listTelefone;
+    private javax.swing.JList<PessoaEmail> listEmail;
+    private javax.swing.JList<PessoaTelefone> listTelefone;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;

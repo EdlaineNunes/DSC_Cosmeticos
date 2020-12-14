@@ -7,32 +7,30 @@ package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
-import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
-import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
+import br.edu.ifnmg.logicaaplicacao.PessoaJuridica;
+import br.edu.ifnmg.logicaaplicacao.PessoaJuridicaRepositorio;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
+import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
-import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 
 /**
  *
  * @author edlaine
  */
-public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
-    PessoaFisicaRepositorio repositorio;
-    PessoaFisica pfisica;
+public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
+    PessoaJuridicaRepositorio repositorio;
+    PessoaJuridica pjuridica;
     Pessoa pessoa;
     PessoaRepositorio repopessoa;
     /**
      * Creates new form PessoaFisicaEditar
      */
-    public PessoaFisicaBuscar() {
-        this.repositorio = RepositorioFactory.getPessoaFisicaRepositorio();
-        this.pfisica = new PessoaFisica();
+    public PessoaJuridicaBuscar() {
+        this.repositorio = RepositorioFactory.getPessoaJuridicaRepositorio();
+        this.pjuridica = new PessoaJuridica();
         
         this.repopessoa = RepositorioFactory.getPessoaRepositorio();
         this.pessoa = new Pessoa();
@@ -93,14 +91,14 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "CPF", "RG", "Nome", "Gênero", "Status", "Versão"
+                "ID", "Nome Fantasia", "Razão Social", "CNPJ", "Rual", "Número", "Bairro", "Complemento", "Cidade", "Status", "Versão"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -126,6 +124,10 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
             tblResultado.getColumnModel().getColumn(4).setResizable(false);
             tblResultado.getColumnModel().getColumn(5).setResizable(false);
             tblResultado.getColumnModel().getColumn(6).setResizable(false);
+            tblResultado.getColumnModel().getColumn(7).setResizable(false);
+            tblResultado.getColumnModel().getColumn(8).setResizable(false);
+            tblResultado.getColumnModel().getColumn(9).setResizable(false);
+            tblResultado.getColumnModel().getColumn(10).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,20 +137,20 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(195, 195, 195)
                         .addComponent(lblNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(bntBuscar)
                         .addGap(26, 26, 26)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(bntBuscar)
+                        .addGap(51, 51, 51)
                         .addComponent(btnNovaPFisica)
-                        .addGap(18, 18, 18)
+                        .addGap(68, 68, 68)
                         .addComponent(btnLimpar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +164,7 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
                     .addComponent(btnLimpar))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,10 +172,10 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
 
     private void btnNovaPFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPFisicaActionPerformed
         // TODO add your handling code here:
-        PessoaFisicaEditar tela = new PessoaFisicaEditar(new PessoaFisica());
-        this.getParent().add(tela);
-        tela.setVisible(true);
-        this.setVisible(false);
+//        PessoaFisicaEditar tela = new PessoaFisicaEditar(new PessoaFisica());
+//        this.getParent().add(tela);
+//        tela.setVisible(true);
+//        this.setVisible(false);
     }//GEN-LAST:event_btnNovaPFisicaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -186,10 +188,14 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
             DefaultTableModel modelo = new DefaultTableModel();
             //adicionando as colunas
             modelo.addColumn("ID");
-            modelo.addColumn("CPF");
-            modelo.addColumn("RG");
-            modelo.addColumn("Nome");
-            modelo.addColumn("Gênero");
+            modelo.addColumn("Nome Fantasia");
+            modelo.addColumn("Razão Social");
+            modelo.addColumn("CNPJ");
+            modelo.addColumn("Rua");
+            modelo.addColumn("Número");
+            modelo.addColumn("Bairro");
+            modelo.addColumn("Complemento");
+            modelo.addColumn("Cidade");
             modelo.addColumn("Status");
             modelo.addColumn("Versão");
             
@@ -201,28 +207,37 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
 
     private void bntBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarActionPerformed
         // adicionando o que foi escrito no campo
-        pfisica.setNome(txtNome.getText());
+        pjuridica.setNome(txtNome.getText());
         //fazendo a bsuca no rep com o filtro
-        List<PessoaFisica> resultado = repositorio.Buscar(pfisica);
+        List<PessoaJuridica> resultado = repositorio.Buscar(pjuridica);
         //criou um modelo vazio
         DefaultTableModel modelo = new DefaultTableModel();
         //adicionando as colunas
         modelo.addColumn("ID");
-        modelo.addColumn("CPF");
-        modelo.addColumn("RG");
-        modelo.addColumn("Nome");
-        modelo.addColumn("Gênero");
+        modelo.addColumn("Nome Fantasia");
+        modelo.addColumn("Razão Social");
+        modelo.addColumn("CNPJ");
+        modelo.addColumn("Rua");
+        modelo.addColumn("Número");
+        modelo.addColumn("Bairro");
+        modelo.addColumn("Complemento");
+        modelo.addColumn("Cidade");
         modelo.addColumn("Status");
         modelo.addColumn("Versão");
         
+        
         //adicionando as linhas
-        for(PessoaFisica p : resultado){
+        for(PessoaJuridica p : resultado){
             Vector linha = new Vector();
             linha.add(p.getId());
-            linha.add(p.getCpf());
-            linha.add(p.getRg());
             linha.add(p.getNome());
-            linha.add(p.getGenero());
+            linha.add(p.getRazaoSocial());
+            linha.add(p.getCnpj());
+            linha.add(p.getRua());
+            linha.add(p.getNumero());
+            linha.add(p.getBairro());
+            linha.add(p.getComplemento());
+            linha.add(p.getCidade());
             linha.add(p.getStatus());
             linha.add(p.getVersao());
             
@@ -233,20 +248,20 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         tblResultado.setModel(modelo);
         
     }//GEN-LAST:event_bntBuscarActionPerformed
-    
+
     private void tblResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMouseClicked
         // TODO add your handling code here:
         int linha = tblResultado.getSelectedRow();
         Long id = Long.parseLong(tblResultado.getValueAt(linha, 0).toString());
-        
-        PessoaFisica pf = repositorio.Abrir(id);
-        
-        PessoaFisicaEditar tela = new PessoaFisicaEditar(pf);
-        this.getParent().add(tela);
-        tela.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_tblResultadoMouseClicked
 
+        PessoaJuridica pj = repositorio.Abrir(id);
+//
+//        PessoaFisicaEditar tela = new PessoaFisicaEditar(pf);
+//        this.getParent().add(tela);
+//        tela.setVisible(true);
+//        this.setVisible(false);
+    }//GEN-LAST:event_tblResultadoMouseClicked
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntBuscar;

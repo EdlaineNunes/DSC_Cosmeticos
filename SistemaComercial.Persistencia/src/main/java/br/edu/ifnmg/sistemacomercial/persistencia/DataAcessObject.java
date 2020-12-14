@@ -44,7 +44,7 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
         }catch(Exception ex){
             //cancelar transacao
             transacao.rollback();
-            //System.out.println("Message: "+ ex);
+            System.out.println("Message: "+ ex);
             
             return false;
         }
@@ -57,6 +57,8 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
             //inicio da transacao
             transacao.begin();
             
+            //torna o obj gerenciavel
+            this.manager.merge(obj);
             //remover transacao no bd
             this.manager.remove(obj);
             
@@ -68,7 +70,7 @@ public abstract class  DataAcessObject<T> implements Repositorio<T>{
         }catch(Exception ex){
             //cancelar transacao
             transacao.rollback();
-            
+            System.out.println("Message: "+ ex);
             return false;
         }
     }

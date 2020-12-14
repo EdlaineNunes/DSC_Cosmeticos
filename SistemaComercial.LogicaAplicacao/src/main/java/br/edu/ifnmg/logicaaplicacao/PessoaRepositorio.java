@@ -14,5 +14,4 @@ import java.util.List;
 public interface PessoaRepositorio 
         extends Repositorio<Pessoa>{
     public Pessoa AbrirPorTipo(PessoaTipo tipo);
-    public List<Pessoa> AbrirTodos(Pessoa obj, PessoaTipo tipo);
 }

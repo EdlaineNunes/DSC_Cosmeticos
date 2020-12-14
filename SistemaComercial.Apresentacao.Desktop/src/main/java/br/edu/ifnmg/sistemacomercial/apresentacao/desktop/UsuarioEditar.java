@@ -264,6 +264,8 @@ public class UsuarioEditar extends javax.swing.JInternalFrame {
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o usuário atual?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
             if(repositorio.Apagar(this.usuario)){
+                JOptionPane.showMessageDialog(this, "Usuário removido com sucesso!","Sucesso!",
+                    JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Aconteceu um problema ao remover os dados!","Erro!",

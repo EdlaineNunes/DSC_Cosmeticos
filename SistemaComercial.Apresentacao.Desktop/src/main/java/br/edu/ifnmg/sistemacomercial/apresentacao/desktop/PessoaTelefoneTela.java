@@ -6,13 +6,9 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
-import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
-import java.util.List;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListModel;
-import javax.swing.table.DefaultTableModel;
 import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 
 /**
@@ -22,59 +18,66 @@ import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
     PessoaRepositorio repositorio;
     Pessoa pessoa;
+    
     /**
      * Creates new form PessoaTelefone
      */
-    public PessoaTelefoneTela(Pessoa p) {
+    public PessoaTelefoneTela() {
         this.repositorio = RepositorioFactory.getPessoaRepositorio();
-        this.pessoa = p;
+        this.pessoa = new Pessoa();
         initComponents();
     }
-    
-    private void preencherTelefones() {
-        pessoa.setId(Long.parseLong( txtID.getText().toString()));
-        pessoa.setNome(txtNome.getText());
-        //fazendo a bsuca no rep com o filtro
-        List<Pessoa> resultado = repositorio.Buscar(pessoa);
-        
-        DefaultTableModel modelo = new DefaultTableModel();
-        //adiciona coluna por coluna
-        modelo.addColumn("ID");
-        modelo.addColumn("Nome");
-        modelo.addColumn("Telefone");
-          
-        //para cada aluno da lista 
-        for (Pessoa pessoa: resultado){
-            //cria um vetor de linha
-            Vector linha = new Vector();
-            //adiciona linha por linha
-            linha.add(pessoa.getId());
-            linha.add(pessoa.getNome());
-            linha.add(pessoa.getTelefones());
-                        
-            //adiciona cada linha na tabela
-            modelo.addRow(linha);
-        }        
-        //adiciona o modelo que é a minha tabela na tabela da interface
-        tblTelefone.setModel(modelo);  
-    }
-    
-    private void limparTelefone(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        //adiciona coluna por coluna
-        modelo.addColumn("ID");
-        modelo.addColumn("Nome");
-        modelo.addColumn("Telefone");
-        
-        tblTelefone.setModel(modelo);
-    }
+       
+//    private void preencherTelefones() {
+//        pessoa.setId(Long.parseLong( txtID.getText().toString()));
+//        pessoa.setNome(txtNome.getText());
+//        //fazendo a bsuca no rep com o filtro
+//        List<Pessoa> resultado = repositorio.Buscar(pessoa);
+//        
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        //adiciona coluna por coluna
+//        modelo.addColumn("ID");
+//        modelo.addColumn("Nome");
+//        modelo.addColumn("Telefone");
+//          
+//        //para cada aluno da lista 
+//        for (Pessoa pessoa: resultado){
+//            //cria um vetor de linha
+//            Vector linha = new Vector();
+//            //adiciona linha por linha
+//            linha.add(pessoa.getId());
+//            linha.add(pessoa.getNome());
+//            linha.add(pessoa.getTelefones());
+//                        
+//            //adiciona cada linha na tabela
+//            modelo.addRow(linha);
+//        }        
+//        //adiciona o modelo que é a minha tabela na tabela da interface
+//        tblTelefone.setModel(modelo);  
+//    }
+//    
+//    private void limparTelefone(){
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        //adiciona coluna por coluna
+//        modelo.addColumn("ID");
+//        modelo.addColumn("Nome");
+//        modelo.addColumn("Telefone");
+//        
+//        tblTelefone.setModel(modelo);
+//    }
 
-//    private void atualizarTelefones(){
-//        String[] tel = new String[pessoa.getTelefones().size()];
-//        tel = pessoa.getTelefones().toArray(tel);
-//        ListModel<String> telefones = new DefaultComboBoxModel<>(tel) ;
-//        listTelefone.setModel(telefones);
-//     }
+    private void atualizarTelefones(){
+        String[] tel = new String[pessoa.getTelefones().size()];
+        tel = pessoa.getTelefones().toArray(tel);
+        ListModel<String> telefones = new DefaultComboBoxModel<>(tel) ;
+        listTelefone.setModel(telefones);
+     }
+    
+    private void limparTelefones(){
+        ListModel<String> telefones = new DefaultComboBoxModel<>() ;
+        listTelefone.setModel(telefones);
+    
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,9 +94,9 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblTelefone = new javax.swing.JTable();
         btnLimpar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listTelefone = new javax.swing.JList<>();
 
         setClosable(true);
         setTitle("Telefones");
@@ -111,36 +114,6 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
 
         btnCancelar.setText("CANCELAR");
 
-        tblTelefone.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome", "Telefone"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tblTelefone);
-        if (tblTelefone.getColumnModel().getColumnCount() > 0) {
-            tblTelefone.getColumnModel().getColumn(0).setResizable(false);
-            tblTelefone.getColumnModel().getColumn(1).setResizable(false);
-            tblTelefone.getColumnModel().getColumn(2).setResizable(false);
-        }
-
         btnLimpar.setText("LIMPAR");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,14 +121,16 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
             }
         });
 
+        jScrollPane1.setViewportView(listTelefone);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -193,9 +168,9 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,12 +178,20 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        preencherTelefones();
+        Pessoa p = new Pessoa();
+        p.setId(Long.parseLong(txtID.getText().toString()));
+        p.setNome(txtNome.getText());
+        
+        repositorio.Buscar(p);
+        atualizarTelefones();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        limparTelefone();
+        txtID.setText("");
+        txtNome.setText("");
+        limparTelefones();
+        
     }//GEN-LAST:event_btnLimparActionPerformed
 
 
@@ -216,10 +199,10 @@ public class PessoaTelefoneTela extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JTable tblTelefone;
+    private javax.swing.JList<String> listTelefone;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
