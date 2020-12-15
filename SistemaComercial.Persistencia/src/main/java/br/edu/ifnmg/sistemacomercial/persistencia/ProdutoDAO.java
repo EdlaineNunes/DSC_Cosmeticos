@@ -7,7 +7,10 @@ package br.edu.ifnmg.sistemacomercial.persistencia;
 
 import br.edu.ifnmg.logicaaplicacao.Produto;
 import br.edu.ifnmg.logicaaplicacao.ProdutoRepositorio;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,7 +26,32 @@ public class ProdutoDAO
 
     @Override
     public List<Produto> Buscar(Produto obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jpql = "select p from Produto p";
+        String filtros = "";
+        Hashtable<String, Object> parametros = new Hashtable<>();
+        
+        if(obj != null){
+        
+            if(obj.getNome().length() > 0){
+                filtros += "p.nome like :nome";
+                parametros.put("nome", obj.getNome() + "%");
+            } 
+            if(obj.getId() > 0){
+                if(filtros.length() > 0) filtros += " and ";
+                filtros += "p.id = :id";
+                parametros.put("id", obj.getId());
+            } 
+        }
+        
+        if(filtros.length() > 0)
+            jpql = jpql + " where " + filtros;
+        
+        Query consulta = this.manager.createQuery(jpql);
+        
+        for(String chave : parametros.keySet())
+            consulta.setParameter(chave, parametros.get(chave));
+        
+        return consulta.getResultList();  
     }
     
 }

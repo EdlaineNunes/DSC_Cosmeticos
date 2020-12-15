@@ -123,7 +123,7 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seja bem vindo(a) " + user.getNome() + "!", "Bem Vindo!",
                     JOptionPane.INFORMATION_MESSAGE);
             
-            TelaPrincipal tela = new TelaPrincipal();
+            TelaPrincipal tela = new TelaPrincipal(user);
             tela.setVisible(true);
         
             this.setVisible(false);

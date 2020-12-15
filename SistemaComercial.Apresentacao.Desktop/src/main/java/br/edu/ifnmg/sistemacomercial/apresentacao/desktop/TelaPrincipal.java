@@ -6,6 +6,7 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
+import br.edu.ifnmg.logicaaplicacao.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +14,19 @@ import javax.swing.JOptionPane;
  * @author edlaine
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    Pessoa pessoa;
+    Usuario usuario;
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
-        pessoa = new Pessoa();
+    public TelaPrincipal(Usuario u) {
+        
+        this.usuario = u;
+        initComponents();
+    }
+
+    private TelaPrincipal() {
+          
+        this.usuario = new Usuario();
         initComponents();
     }
 
@@ -38,6 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JMIUsuario = new javax.swing.JMenuItem();
         JMIPessoaFisica = new javax.swing.JMenuItem();
         JMIPessoaJuridica = new javax.swing.JMenuItem();
+        JMIProduto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         JMITelefone = new javax.swing.JMenuItem();
         JMIEmails = new javax.swing.JMenuItem();
@@ -82,6 +91,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         JCadastros.add(JMIPessoaJuridica);
+
+        JMIProduto.setText("Produto");
+        JMIProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIProdutoActionPerformed(evt);
+            }
+        });
+        JCadastros.add(JMIProduto);
 
         jMenuBar1.add(JCadastros);
 
@@ -158,13 +175,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void JMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMISairActionPerformed
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Deseja realmente SAIR do Sistema?", "Confirmação!",
+        if(JOptionPane.showConfirmDialog(this, usuario.getNome() + " deseja realmente SAIR do Sistema?", "Confirmação!",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(this, "Saiu com sucesso!", "Exit!", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false); 
         }else
             JOptionPane.showMessageDialog(this, "Operação Cancelada", "INFORMAÇÃO!", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_JMISairActionPerformed
+
+    private void JMIProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIProdutoActionPerformed
+        // TODO add your handling code here:
+        ProdutoBuscar tela = new ProdutoBuscar(usuario);
+        this.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMIProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +230,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIEmails;
     private javax.swing.JMenuItem JMIPessoaFisica;
     private javax.swing.JMenuItem JMIPessoaJuridica;
+    private javax.swing.JMenuItem JMIProduto;
     private javax.swing.JMenuItem JMISair;
     private javax.swing.JMenuItem JMITelefone;
     private javax.swing.JMenuItem JMIUsuario;
