@@ -39,21 +39,24 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     }
 
     private void setComponentes(){      
-        this.lblIDProduto.setText(this.produto.getId().toString());
-        this.txtNome.setText(this.produto.getNome());
-        this.txtValorUnitario.setText(this.produto.getValorUnitario().toString());
-        this.txtEstoque.setText(String.valueOf( this.produto.getEstoque()));
-        
-        
-        this.txtUsuario.setText(this.produto.getUsuario().getLogin());
-        
-        this.cbxStatus.setSelectedItem(this.produto.getStatus().name());
-        this.cbxUnidCompra.setSelectedItem(this.produto.getUnidcompra().name());
-        this.cbxUnidVenda.setSelectedItem(this.produto.getUnidvenda().name());
-        this.txtRazaoCompra.setText(String.valueOf( this.produto.getRazaocompra() ));
-        this.txtRazaoVenda.setText(String.valueOf( this.produto.getRazaovenda() ));
-        this.cbxFinalidade.setSelectedItem(this.produto.getFinalidade().name());
-        this.cbxAplicacao.setSelectedItem(this.produto.getAplicacao().name());
+        if (this.produto.getId() > 0) {
+            
+            this.lblIDProduto.setText(this.produto.getId().toString());
+            this.txtNome.setText(this.produto.getNome());
+            this.txtValorUnitario.setText(this.produto.getValorUnitario().toString());
+            this.txtEstoque.setText(String.valueOf( this.produto.getEstoque()));
+
+
+            this.txtUsuario.setText(this.produto.getUsuario().getLogin());
+
+            this.cbxStatus.setSelectedItem(this.produto.getStatus().name());
+            this.cbxUnidCompra.setSelectedItem(this.produto.getUnidcompra().name());
+            this.cbxUnidVenda.setSelectedItem(this.produto.getUnidvenda().name());
+            this.txtRazaoCompra.setText(String.valueOf( this.produto.getRazaocompra() ));
+            this.txtRazaoVenda.setText(String.valueOf( this.produto.getRazaovenda() ));
+            this.cbxFinalidade.setSelectedItem(this.produto.getFinalidade().name());
+            this.cbxAplicacao.setSelectedItem(this.produto.getAplicacao().name());
+        }
     }
     
     private void getComponentes(){

@@ -92,7 +92,7 @@ public class Produto implements Serializable {
         this.finalidade = ProdutoFinalidade.Perfumar;
         this.aplicacao = ProdutoAplicacao.Pele;
         this.status = Status.Ativo;
-        this.usuario = usuario;
+        this.usuario = null;
     }
 
     public Produto(String nome, String valorUnitario,
@@ -110,7 +110,7 @@ public class Produto implements Serializable {
         this.finalidade = ProdutoFinalidade.Perfumar;
         this.aplicacao = ProdutoAplicacao.Pele;
         this.status = Status.Ativo;
-        this.usuario = usuario;
+        this.usuario = null;
     }
     
     public Long getId() {
