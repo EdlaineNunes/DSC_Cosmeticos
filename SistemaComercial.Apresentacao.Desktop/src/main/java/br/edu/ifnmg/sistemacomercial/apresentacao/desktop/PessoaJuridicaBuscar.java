@@ -22,18 +22,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
     PessoaJuridicaRepositorio repositorio;
-    PessoaJuridica pjuridica;
-    Pessoa pessoa;
-    PessoaRepositorio repopessoa;
+    PessoaJuridica pessoa;
+    
     /**
      * Creates new form PessoaFisicaEditar
      */
     public PessoaJuridicaBuscar() {
         this.repositorio = RepositorioFactory.getPessoaJuridicaRepositorio();
-        this.pjuridica = new PessoaJuridica();
+        this.pessoa = new PessoaJuridica();
         
-        this.repopessoa = RepositorioFactory.getPessoaRepositorio();
-        this.pessoa = new Pessoa();
         initComponents();
     }
     
@@ -49,14 +46,14 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         bntBuscar = new javax.swing.JButton();
-        btnNovaPFisica = new javax.swing.JButton();
+        btnNovaPJuridica = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblResultado = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Buscar Pessoa Física");
-        setToolTipText("Buscar Pessoa Física.");
+        setTitle("Buscar Pessoa Jurídica");
+        setToolTipText("Buscar Pessoa Jurídica.");
 
         lblNome.setText("Nome:");
 
@@ -70,11 +67,11 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
             }
         });
 
-        btnNovaPFisica.setText("NOVO CADASTRO");
-        btnNovaPFisica.setToolTipText("Clique para criar um Novo Cadastro.");
-        btnNovaPFisica.addActionListener(new java.awt.event.ActionListener() {
+        btnNovaPJuridica.setText("NOVO CADASTRO");
+        btnNovaPJuridica.setToolTipText("Clique para criar um Novo Cadastro.");
+        btnNovaPJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovaPFisicaActionPerformed(evt);
+                btnNovaPJuridicaActionPerformed(evt);
             }
         });
 
@@ -91,7 +88,7 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome Fantasia", "Razão Social", "CNPJ", "Rual", "Número", "Bairro", "Complemento", "Cidade", "Status", "Versão"
+                "ID", "NomeFantasia", "RazãoSocial", "CNPJ", "Rua", "Número", "Bairro", "Complemento", "Cidade", "Status", "Versão"
             }
         ) {
             Class[] types = new Class [] {
@@ -144,7 +141,7 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
                         .addGap(48, 48, 48)
                         .addComponent(bntBuscar)
                         .addGap(51, 51, 51)
-                        .addComponent(btnNovaPFisica)
+                        .addComponent(btnNovaPJuridica)
                         .addGap(68, 68, 68)
                         .addComponent(btnLimpar))
                     .addGroup(layout.createSequentialGroup()
@@ -160,7 +157,7 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bntBuscar)
-                    .addComponent(btnNovaPFisica)
+                    .addComponent(btnNovaPJuridica)
                     .addComponent(btnLimpar))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,26 +167,26 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovaPFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPFisicaActionPerformed
+    private void btnNovaPJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPJuridicaActionPerformed
         // TODO add your handling code here:
-//        PessoaFisicaEditar tela = new PessoaFisicaEditar(new PessoaFisica());
-//        this.getParent().add(tela);
-//        tela.setVisible(true);
-//        this.setVisible(false);
-    }//GEN-LAST:event_btnNovaPFisicaActionPerformed
+        PessoaJuridicaEditar tela = new PessoaJuridicaEditar(new PessoaJuridica());
+        this.getParent().add(tela);
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnNovaPJuridicaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Deseja realmente limpar a busca?", "Confirmação", JOptionPane.YES_NO_OPTION)
-                == JOptionPane.YES_OPTION){
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente limpar a busca?", "Confirmação",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             txtNome.setText("");
         
             //criou um modelo vazio
             DefaultTableModel modelo = new DefaultTableModel();
             //adicionando as colunas
             modelo.addColumn("ID");
-            modelo.addColumn("Nome Fantasia");
-            modelo.addColumn("Razão Social");
+            modelo.addColumn("NomeFantasia");
+            modelo.addColumn("RazãoSocial");
             modelo.addColumn("CNPJ");
             modelo.addColumn("Rua");
             modelo.addColumn("Número");
@@ -207,15 +204,15 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
 
     private void bntBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarActionPerformed
         // adicionando o que foi escrito no campo
-        pjuridica.setNome(txtNome.getText());
+        pessoa.setNome(txtNome.getText());
         //fazendo a bsuca no rep com o filtro
-        List<PessoaJuridica> resultado = repositorio.Buscar(pjuridica);
+        List<PessoaJuridica> resultado = repositorio.Buscar(pessoa);
         //criou um modelo vazio
         DefaultTableModel modelo = new DefaultTableModel();
         //adicionando as colunas
         modelo.addColumn("ID");
-        modelo.addColumn("Nome Fantasia");
-        modelo.addColumn("Razão Social");
+        modelo.addColumn("NomeFantasia");
+        modelo.addColumn("RazãoSocial");
         modelo.addColumn("CNPJ");
         modelo.addColumn("Rua");
         modelo.addColumn("Número");
@@ -255,18 +252,18 @@ public class PessoaJuridicaBuscar extends javax.swing.JInternalFrame {
         Long id = Long.parseLong(tblResultado.getValueAt(linha, 0).toString());
 
         PessoaJuridica pj = repositorio.Abrir(id);
-//
-//        PessoaFisicaEditar tela = new PessoaFisicaEditar(pf);
-//        this.getParent().add(tela);
-//        tela.setVisible(true);
-//        this.setVisible(false);
+
+        PessoaJuridicaEditar tela = new PessoaJuridicaEditar(pj);
+        this.getParent().add(tela);
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tblResultadoMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntBuscar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnNovaPFisica;
+    private javax.swing.JButton btnNovaPJuridica;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JTable tblResultado;

@@ -7,12 +7,10 @@ package br.edu.ifnmg.logicaaplicacao;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
@@ -20,9 +18,12 @@ import javax.persistence.Version;
  * @author edlaine
  */
 @Entity
+@Table(name="pessoajuridica")
 @DiscriminatorValue(value = "2")
 public class PessoaJuridica extends Pessoa implements Serializable {
    
+    private static final long serialVersionUID = 1L;
+    
     @Column (name="razaoSocial", nullable= false, length=250)
     private String razaoSocial;
     
@@ -55,13 +56,13 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         this.rua = "";
         this.numero = "";
         this.bairro = "";
-        this.complemento = "Não há";
+        this.complemento = "";
         this.cidade = "";
         this.versao = 1;
     }
     
-    public PessoaJuridica( String nome, PessoaFisica representante, String razaoSocial, 
-            String cnpj, String rua, String numero, String bairro, String complemento, 
+    public PessoaJuridica( String nome, String razaoSocial,String cnpj, 
+            String rua, String numero, String bairro, String complemento, 
             String cidade) {
         super();
         this.setTipo(PessoaTipo.Jurídica);
@@ -73,7 +74,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         this.bairro = bairro;
         this.complemento = complemento;
         this.cidade = cidade;
-        this.versao = versao;
+        this.versao = 1;
     }
 
     public int getVersao() {

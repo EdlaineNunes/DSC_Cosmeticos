@@ -6,7 +6,7 @@
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.Pessoa;
-import java.awt.Component;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         JSistema = new javax.swing.JMenu();
+        JMISair = new javax.swing.JMenuItem();
         JCadastros = new javax.swing.JMenu();
         JMIUsuario = new javax.swing.JMenuItem();
         JMIPessoaFisica = new javax.swing.JMenuItem();
@@ -45,6 +46,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Sistema Comercial");
 
         JSistema.setText("Sistema");
+
+        JMISair.setText("SAIR");
+        JMISair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMISairActionPerformed(evt);
+            }
+        });
+        JSistema.add(JMISair);
+
         jMenuBar1.add(JSistema);
 
         JCadastros.setText("Cadastros");
@@ -101,11 +111,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1270, Short.MAX_VALUE)
+            .addGap(0, 1358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 702, Short.MAX_VALUE)
         );
 
         pack();
@@ -145,6 +155,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_JMIEmailsActionPerformed
+
+    private void JMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMISairActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente SAIR do Sistema?", "Confirmação!",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(this, "Saiu com sucesso!", "Exit!", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false); 
+        }else
+            JOptionPane.showMessageDialog(this, "Operação Cancelada", "INFORMAÇÃO!", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_JMISairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +206,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIEmails;
     private javax.swing.JMenuItem JMIPessoaFisica;
     private javax.swing.JMenuItem JMIPessoaJuridica;
+    private javax.swing.JMenuItem JMISair;
     private javax.swing.JMenuItem JMITelefone;
     private javax.swing.JMenuItem JMIUsuario;
     private javax.swing.JMenu JSistema;

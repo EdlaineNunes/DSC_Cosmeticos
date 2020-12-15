@@ -47,13 +47,6 @@ public class PessoaFisicaDAO
                 filtros += "pf.id = :id";
                 parametros.put("id", obj.getId());
             }
-            
-//            if(obj.getGenero() != null){
-//                if(filtros.length() > 0) filtros += " and ";
-//                filtros += "pf.genero = :genero";
-//                parametros.put("genero", obj.getGenero());
-//            }
-
             if(obj.getRg()!= null && !obj.getRg().isEmpty()){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "pf.rg like :rg";

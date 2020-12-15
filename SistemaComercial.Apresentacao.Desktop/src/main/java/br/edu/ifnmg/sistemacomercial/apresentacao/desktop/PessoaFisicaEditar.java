@@ -400,16 +400,22 @@ public class PessoaFisicaEditar extends javax.swing.JInternalFrame {
 
     private void btnRemoverEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverEmailActionPerformed
         // TODO add your handling code here:
-        this.pessoaf.removeEmail(email);
-        txtEmail.setText("");
-        atualizarEmail();
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o E-mail selecionado?", "Confirmação",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            this.pessoaf.removeEmail(email);
+            txtEmail.setText("");
+            atualizarEmail();
+        }
     }//GEN-LAST:event_btnRemoverEmailActionPerformed
 
     private void btnRemoverTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverTelefoneActionPerformed
         // TODO add your handling code here:
-        this.pessoaf.removeTelefone(telefone);
-        txtTelefone.setText("");
-        atualizarTelefones();
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o Telefone selecionado?", "Confirmação",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            this.pessoaf.removeTelefone(telefone);
+            txtTelefone.setText("");
+            atualizarTelefones();
+        }
     }//GEN-LAST:event_btnRemoverTelefoneActionPerformed
 
     private void btnAdicionarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTelefoneActionPerformed

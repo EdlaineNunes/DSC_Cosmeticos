@@ -5,18 +5,13 @@
  */
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
-import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisica;
 import br.edu.ifnmg.logicaaplicacao.PessoaFisicaRepositorio;
-import br.edu.ifnmg.logicaaplicacao.PessoaTipo;
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
-import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 
 /**
  *
@@ -25,8 +20,7 @@ import br.edu.ifnmg.logicaaplicacao.PessoaRepositorio;
 public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
     PessoaFisicaRepositorio repositorio;
     PessoaFisica pfisica;
-    Pessoa pessoa;
-    PessoaRepositorio repopessoa;
+
     /**
      * Creates new form PessoaFisicaEditar
      */
@@ -34,8 +28,6 @@ public class PessoaFisicaBuscar extends javax.swing.JInternalFrame {
         this.repositorio = RepositorioFactory.getPessoaFisicaRepositorio();
         this.pfisica = new PessoaFisica();
         
-        this.repopessoa = RepositorioFactory.getPessoaRepositorio();
-        this.pessoa = new Pessoa();
         initComponents();
     }
     
