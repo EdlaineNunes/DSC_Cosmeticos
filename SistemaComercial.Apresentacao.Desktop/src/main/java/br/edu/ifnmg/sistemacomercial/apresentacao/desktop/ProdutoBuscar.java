@@ -186,7 +186,7 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
             Vector linha = new Vector();
             linha.add(p.getId());
             linha.add(p.getNome());
-            linha.add(p.getValorUnitario());
+            linha.add("R$ " + p.getValorUnitario());
             linha.add(p.getEstoque());
             linha.add(p.getUsuario().getLogin());
             linha.add(p.getUnidcompra());

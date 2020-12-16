@@ -160,7 +160,6 @@ public class Console {
        Produto pdt = new Produto();
        pdt.setNome("Shampoo Seda");
        pdt.setValorUnitario(new BigDecimal("3.5"));
-       pdt.setEstoque(100);
        pdt.setUsuario(ua);
        pdt.setFinalidade(ProdutoFinalidade.Limpar);
        pdt.setAplicacao(ProdutoAplicacao.Capilar);
@@ -174,7 +173,6 @@ public class Console {
        Produto pdtA = new Produto();
        pdtA.setNome("Condicionar Bio");
        pdtA.setValorUnitario(new BigDecimal("10.0"));
-       pdtA.setEstoque(100);
        pdtA.setUsuario(u);
        pdtA.setFinalidade(ProdutoFinalidade.Limpar);
        pdtA.setAplicacao(ProdutoAplicacao.Capilar);
@@ -188,21 +186,19 @@ public class Console {
        Produto pdtB = new Produto();
        pdtB.setNome("Creme de Pentear");
        pdtB.setValorUnitario(new BigDecimal("5.5"));
-       pdtB.setEstoque(100);
        pdtB.setUsuario(ub);
        pdtB.setFinalidade(ProdutoFinalidade.Limpar);
        pdtB.setAplicacao(ProdutoAplicacao.Capilar);
        pdtB.setUnidcompra(UnidadeCompra.Caixa);
        pdtB.setRazaocompra(30);
        pdtB.setUnidvenda(UnidadeVenda.Unidade);
-       pdtA.setStatus(Status.Ativo);
+       pdtB.setStatus(Status.Ativo);
        pdtB.setRazaovenda(1);
        repoProduto.Salvar(pdtB);
        
        Produto pdtC = new Produto();
        pdtC.setNome("Creme de pele");
        pdtC.setValorUnitario(new BigDecimal("5.5"));
-       pdtC.setEstoque(100);
        pdtC.setUsuario(u);
        pdtC.setFinalidade(ProdutoFinalidade.Perfumar);
        pdtC.setAplicacao(ProdutoAplicacao.Pele);
@@ -210,7 +206,7 @@ public class Console {
        pdtC.setRazaocompra(15);
        pdtC.setUnidvenda(UnidadeVenda.Unidade);
        pdtC.setRazaovenda(1);
-       pdt.setStatus(Status.Ativo);
+       pdtC.setStatus(Status.Ativo);
        repoProduto.Salvar(pdtC);
        
        
@@ -237,20 +233,57 @@ public class Console {
        
        
        //criar Transacao
+       Transacao t3 = new Transacao(pj1,TransacaoTipo.Compra, user3);
+       t3.add(new TransacaoItem(t3,pr1,15));
+       t3.add(new TransacaoItem(t3,pr2,90));
+       t3.add(new TransacaoItem(t3,pr3,90));
+       t3.add(new TransacaoItem(t3,pr4,90));
+       t3.add(new TransacaoItem(t3,pr1,90));
+       t3.add(new TransacaoItem(t3,pr2,90));
+       
+       pr1.setEstoque(15, TransacaoTipo.Compra );
+       repoProduto.Salvar(pr1);
+       
+       pr2.setEstoque(90, TransacaoTipo.Compra);
+       repoProduto.Salvar(pr2);
+       
+       pr3.setEstoque(90, TransacaoTipo.Compra);
+       repoProduto.Salvar(pr3);
+       
+       pr4.setEstoque(90, TransacaoTipo.Compra);
+       repoProduto.Salvar(pr4);
+       
+       pr1.setEstoque(90, TransacaoTipo.Compra);
+       repoProduto.Salvar(pr1);
+       
+       pr2.setEstoque(90, TransacaoTipo.Compra);
+       repoProduto.Salvar(pr2);
+       
+       repoTransacao.Salvar(t3);
+
+       
        Transacao t1 = new Transacao(p1,TransacaoTipo.Venda, user1);
        t1.add(new TransacaoItem(t1,pr1,3));
        t1.add(new TransacaoItem(t1,pr2,4));
+       
+       pr1.setEstoque(3, TransacaoTipo.Venda);
+       repoProduto.Salvar(pr1);
+       
+       pr2.setEstoque(4, TransacaoTipo.Venda);
+       repoProduto.Salvar(pr2);
        repoTransacao.Salvar(t1);
         
+       
        Transacao t2 = new Transacao(p2,TransacaoTipo.Venda, user2);
        t2.add(new TransacaoItem(t2,pr2,2));
        t2.add(new TransacaoItem(t2,pr3,4));
+       
+       pr2.setEstoque(2, TransacaoTipo.Venda);
+       repoProduto.Salvar(pr2);
+       
+       pr3.setEstoque(4, TransacaoTipo.Venda);
+       repoProduto.Salvar(pr3);
        repoTransacao.Salvar(t2);
-        
-       Transacao t3 = new Transacao(pj1,TransacaoTipo.Compra, user3);
-       t3.add(new TransacaoItem(t3,pr1,15));
-       t3.add(new TransacaoItem(t3,pr2,9));
-       repoTransacao.Salvar(t3);
         
     }    
     

@@ -63,7 +63,7 @@ public class TransacaoItem implements Serializable {
         this.transacao = transacao;
         this.produto = produto;
         this.quantidade = quantidade;
-        this.valorUnitario = this.produto.getValorUnitario();    
+        this.valorUnitario = this.produto.getValorUnitario();
     }
 
     public Transacao getTransacao() {
@@ -89,6 +89,22 @@ public class TransacaoItem implements Serializable {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    
+//    public void atualizaEstoque(){
+//        if ( this.transacao.getTipo() == TransacaoTipo.Compra){
+//            int qnt = this.produto.getEstoque();
+//            int valor = (this.getQuantidade() * this.produto.getRazaocompra()) + qnt;
+//            this.produto.setEstoque(valor);           
+//        }
+//        if( this.transacao.getTipo() == TransacaoTipo.Venda){
+//            int qnt = this.produto.getEstoque();
+//            int venda = this.getQuantidade();
+//            if(qnt >= venda){
+//                int valor = (this.getQuantidade() * this.produto.getRazaovenda()) - qnt;
+//                this.produto.setEstoque(valor);
+//            }
+//        }    
+//    }
 
     public BigDecimal getValorUnitario() {
         return valorUnitario;

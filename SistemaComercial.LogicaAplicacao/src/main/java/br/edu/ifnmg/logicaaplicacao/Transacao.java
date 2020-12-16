@@ -141,10 +141,11 @@ public class Transacao implements Serializable {
     }
     
     public boolean add(TransacaoItem item){
+        item.setTransacao(this);
         if(! this.itens.contains(item)){
             this.itens.add(item);
             this.valorTotal = this.valorTotal.add (
-            item.getValorUnitario().multiply(BigDecimal.valueOf(item.getQuantidade())));
+                item.getValorUnitario().multiply(BigDecimal.valueOf(item.getQuantidade())));
             return true;
         }
         return false;

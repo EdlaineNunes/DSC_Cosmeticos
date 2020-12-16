@@ -5,7 +5,6 @@
  */
 package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
-import br.edu.ifnmg.logicaaplicacao.Pessoa;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
 import javax.swing.JOptionPane;
 
@@ -39,22 +38,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        JSistema = new javax.swing.JMenu();
+        jMBMenuGeral = new javax.swing.JMenuBar();
+        JMSistema = new javax.swing.JMenu();
         JMISair = new javax.swing.JMenuItem();
-        JCadastros = new javax.swing.JMenu();
+        JMCadastros = new javax.swing.JMenu();
         JMIUsuario = new javax.swing.JMenuItem();
         JMIPessoaFisica = new javax.swing.JMenuItem();
         JMIPessoaJuridica = new javax.swing.JMenuItem();
         JMIProduto = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMContatos = new javax.swing.JMenu();
         JMITelefone = new javax.swing.JMenuItem();
         JMIEmails = new javax.swing.JMenuItem();
+        JMTransacao = new javax.swing.JMenu();
+        JMIBuscarTransacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Comercial");
 
-        JSistema.setText("Sistema");
+        JMSistema.setText("Sistema");
 
         JMISair.setText("SAIR");
         JMISair.addActionListener(new java.awt.event.ActionListener() {
@@ -62,11 +63,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMISairActionPerformed(evt);
             }
         });
-        JSistema.add(JMISair);
+        JMSistema.add(JMISair);
 
-        jMenuBar1.add(JSistema);
+        jMBMenuGeral.add(JMSistema);
 
-        JCadastros.setText("Cadastros");
+        JMCadastros.setText("Cadastros");
 
         JMIUsuario.setText("Usuário");
         JMIUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +75,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMIUsuarioActionPerformed(evt);
             }
         });
-        JCadastros.add(JMIUsuario);
+        JMCadastros.add(JMIUsuario);
 
         JMIPessoaFisica.setText("Pessoa Física");
         JMIPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +83,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMIPessoaFisicaActionPerformed(evt);
             }
         });
-        JCadastros.add(JMIPessoaFisica);
+        JMCadastros.add(JMIPessoaFisica);
 
         JMIPessoaJuridica.setText("Pessoa Jurídica");
         JMIPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +91,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMIPessoaJuridicaActionPerformed(evt);
             }
         });
-        JCadastros.add(JMIPessoaJuridica);
+        JMCadastros.add(JMIPessoaJuridica);
 
         JMIProduto.setText("Produto");
         JMIProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -98,11 +99,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMIProdutoActionPerformed(evt);
             }
         });
-        JCadastros.add(JMIProduto);
+        JMCadastros.add(JMIProduto);
 
-        jMenuBar1.add(JCadastros);
+        jMBMenuGeral.add(JMCadastros);
 
-        jMenu1.setText("Contatos");
+        jMContatos.setText("Contatos");
 
         JMITelefone.setText("Telefones");
         JMITelefone.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +111,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMITelefoneActionPerformed(evt);
             }
         });
-        jMenu1.add(JMITelefone);
+        jMContatos.add(JMITelefone);
 
         JMIEmails.setText("Emails");
         JMIEmails.addActionListener(new java.awt.event.ActionListener() {
@@ -118,11 +119,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JMIEmailsActionPerformed(evt);
             }
         });
-        jMenu1.add(JMIEmails);
+        jMContatos.add(JMIEmails);
 
-        jMenuBar1.add(jMenu1);
+        jMBMenuGeral.add(jMContatos);
 
-        setJMenuBar(jMenuBar1);
+        JMTransacao.setText("Transações");
+
+        JMIBuscarTransacao.setText("Buscar Transações");
+        JMIBuscarTransacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIBuscarTransacaoActionPerformed(evt);
+            }
+        });
+        JMTransacao.add(JMIBuscarTransacao);
+
+        jMBMenuGeral.add(JMTransacao);
+
+        setJMenuBar(jMBMenuGeral);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +203,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_JMIProdutoActionPerformed
 
+    private void JMIBuscarTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIBuscarTransacaoActionPerformed
+        // TODO add your handling code here:
+        TransacaoBuscar tela = new TransacaoBuscar();
+        this.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_JMIBuscarTransacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,7 +246,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu JCadastros;
+    private javax.swing.JMenu JMCadastros;
+    private javax.swing.JMenuItem JMIBuscarTransacao;
     private javax.swing.JMenuItem JMIEmails;
     private javax.swing.JMenuItem JMIPessoaFisica;
     private javax.swing.JMenuItem JMIPessoaJuridica;
@@ -234,8 +255,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMISair;
     private javax.swing.JMenuItem JMITelefone;
     private javax.swing.JMenuItem JMIUsuario;
-    private javax.swing.JMenu JSistema;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu JMSistema;
+    private javax.swing.JMenu JMTransacao;
+    private javax.swing.JMenuBar jMBMenuGeral;
+    private javax.swing.JMenu jMContatos;
     // End of variables declaration//GEN-END:variables
 }

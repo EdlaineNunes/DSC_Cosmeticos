@@ -44,7 +44,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
             this.lblIDProduto.setText(this.produto.getId().toString());
             this.txtNome.setText(this.produto.getNome());
             this.txtValorUnitario.setText(this.produto.getValorUnitario().toString());
-            this.txtEstoque.setText(String.valueOf( this.produto.getEstoque()));
+            this.lblEstoqueQnt.setText(String.valueOf( this.produto.getEstoque()));
 
 
             this.txtUsuario.setText(this.produto.getUsuario().getLogin());
@@ -62,10 +62,9 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     private void getComponentes(){
         this.produto.setNome(this.txtNome.getText());
         this.produto.setValorUnitario(new BigDecimal( this.txtValorUnitario.getText() ));
-        this.produto.setEstoque(Integer.parseInt( this.txtEstoque.getText() ));
+        this.produto.setEstoque(Integer.parseInt( this.lblEstoqueQnt.getText() ), null);
         
-//        // o usuário eu já tenho
-        //como pegar um usuário que eu já tenho?
+        // o usuário eu já tenho
         this.produto.setUsuario(usuario);
         this.txtUsuario.setText( this.produto.getUsuario().getLogin() );
               
@@ -97,7 +96,6 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         lblValorUnitario = new javax.swing.JLabel();
         txtValorUnitario = new javax.swing.JTextField();
         lblEstoque = new javax.swing.JLabel();
-        txtEstoque = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
@@ -117,6 +115,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         btnSalvar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        lblEstoqueQnt = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Editar Produto");
@@ -182,6 +181,8 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
             }
         });
 
+        lblEstoqueQnt.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,8 +226,8 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblEstoque)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(lblEstoqueQnt, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
                                 .addComponent(lblUsuario))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblFinalidade)
@@ -271,11 +272,11 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstoque)
-                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario)
                     .addComponent(lblStatus)
-                    .addComponent(cbxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEstoqueQnt))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUnidCompra)
@@ -294,7 +295,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                     .addComponent(lblAplicacao)
                     .addComponent(cbxAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFinalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnRemover)
@@ -357,6 +358,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbxUnidVenda;
     private javax.swing.JLabel lblAplicacao;
     private javax.swing.JLabel lblEstoque;
+    private javax.swing.JLabel lblEstoqueQnt;
     private javax.swing.JLabel lblFinalidade;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDProduto;
@@ -368,7 +370,6 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblUnidVenda;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblValorUnitario;
-    private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRazaoCompra;
     private javax.swing.JTextField txtRazaoVenda;
