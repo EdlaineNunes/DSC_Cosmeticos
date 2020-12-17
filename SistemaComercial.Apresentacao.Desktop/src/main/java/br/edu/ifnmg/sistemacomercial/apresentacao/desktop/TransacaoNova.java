@@ -16,10 +16,10 @@ import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
 import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
 import br.edu.ifnmg.logicaaplicacao.Usuario;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +31,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
     Transacao transacao;
     TransacaoRepositorio repositorio;
     TransacaoTipo tipo;
-    List<TransacaoItem> itens;
     TransacaoItem item;
     Usuario usuario;
     Pessoa pessoa;
@@ -46,7 +45,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         this.usuario = u;
         this.repositorio = RepositorioFactory.getTransacaoRepositorio();
         this.tipo = null;
-        this.itens = t.getItens();
         this.item = new TransacaoItem();
         
         this.pessoa = new Pessoa();
@@ -54,6 +52,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         
         this.produto = new Produto();
         this.repoproduto = RepositorioFactory.getProdutoRepositorio();
+        
         initComponents();
         
         this.setComponentes();
@@ -77,7 +76,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     
             
         //adicionando as linhas
-        for(TransacaoItem i : this.itens){
+        for(TransacaoItem i : this.transacao.getItens()){
             Vector linha = new Vector();
             linha.add(i.getProduto().getNome());
             linha.add("R$ " + i.getValorUnitario());
@@ -120,7 +119,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
 
 
             //adicionando as linhas
-            for(TransacaoItem i : this.itens){
+            for(TransacaoItem i : this.transacao.getItens()){
                 Vector linha = new Vector();
                 linha.add(i.getProduto().getNome());
                 linha.add("R$ " + i.getValorUnitario());
@@ -301,7 +300,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
 
         lblTipo.setText("Tipo de Transação:");
 
-        cbxTransacaoTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venda", "Compra", "Estorno ", "Descarte", " " }));
+        cbxTransacaoTipo.setModel(new DefaultComboBoxModel(TransacaoTipo.values()));
 
         lblUsuario.setText("Usuário (Login):");
 
@@ -369,16 +368,16 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                                 .addComponent(lblIDTransacao)
                                 .addGap(35, 35, 35)
                                 .addComponent(lblPessoa)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIDPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblNomePessoa)
                                 .addGap(53, 53, 53)
                                 .addComponent(lblNomePessoaTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnValidarPessoa)
                                 .addGap(31, 31, 31))))))
@@ -429,7 +428,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQnt)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar)
                     .addComponent(btnRemover)
@@ -476,16 +475,17 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if( !this.txtNomeProduto.getText().isEmpty() && 
                 !this.txtQuantidade.getText().isEmpty() ){
-            produto = repoproduto.buscaNomeProduto(this.txtNomeProduto.getText().toString());
+            produto = repoproduto.buscaNomeProduto(this.txtNomeProduto.getText());
             if(produto != null){
-                this.transacao.setTipo(TransacaoTipo.valueOf( this.cbxTransacaoTipo.getSelectedItem().toString() ));
-                if(TransacaoTipo.valueOf( this.transacao.getTipo().toString() ) == TransacaoTipo.Venda || 
-                        TransacaoTipo.valueOf( this.transacao.getTipo().toString() ) == TransacaoTipo.Descarte ){
-                    if(produto.getEstoque() >= Integer.parseInt(this.txtQuantidade.getText().toString())){
-                        int quantidade = Integer.parseInt(this.txtQuantidade.getText().toString());
+                this.transacao.setTipo( (TransacaoTipo)this.cbxTransacaoTipo.getSelectedItem() );
+                if( this.transacao.getTipo()  == TransacaoTipo.Venda || 
+                        this.transacao.getTipo() == TransacaoTipo.Descarte ){
+                    if(produto.getEstoque() >= Integer.parseInt(this.txtQuantidade.getText())){
+                        int quantidade = Integer.parseInt(this.txtQuantidade.getText());
                         this.item = new TransacaoItem(transacao, produto, quantidade);
                         //adiciona na lista
-                        this.itens.add(item);
+                        this.transacao.add(item);
+                        this.lblValorTotal.setText(this.transacao.getValorTotal().toString());
                         this.txtNomeProduto.setText("");
                         this.txtQuantidade.setText("");
                         atualizaItens();
@@ -498,7 +498,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     int quantidade = Integer.parseInt(this.txtQuantidade.getText().toString());
                     this.item = new TransacaoItem(transacao, produto, quantidade);
                     //adiciona na lista
-                    this.itens.add(item);
+                    this.transacao.add(item);
                     this.txtNomeProduto.setText("");
                     this.txtQuantidade.setText("");
                     atualizaItens();
@@ -520,8 +520,9 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
             if(JOptionPane.showConfirmDialog(this, "Deseja realmente REMOVER o produto?", "Confirmação",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 //verifico se está na lista
-                for(TransacaoItem i : this.itens){
-                    this.itens.remove(i);
+                for(TransacaoItem i : this.transacao.getItens()){
+                    this.transacao.remove(i);
+                    this.lblValorTotal.setText(this.transacao.getValorTotal().toString());
                     this.txtNomeProduto.setText("");
                     this.txtQuantidade.setText("");
                     atualizaItens();
@@ -554,8 +555,9 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
             if(JOptionPane.showConfirmDialog(this, "Deseja realmente EDITAR A QUANTIDADE do produto?", "Confirmação",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 //verifico se está na lista
-                for(TransacaoItem i : this.itens){
-                    this.itens.remove(i);
+                for(TransacaoItem i : this.transacao.getItens()){
+                    this.transacao.remove(i);
+                    this.lblValorTotal.setText(this.transacao.getValorTotal().toString());
                     this.txtQuantidade.setText("");
                     atualizaItens();
                 }    
@@ -585,7 +587,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
             if(repositorio.Salvar(this.transacao)){
                 JOptionPane.showMessageDialog(this, "Sucesso ao salvar!","Informação!",JOptionPane.INFORMATION_MESSAGE);
                 
-                for(TransacaoItem i: this.itens){
+                for(TransacaoItem i: this.transacao.getItens()){
                     this.produto = this.repoproduto.Abrir(i.getProduto().getId());
                     this.produto.setEstoque(i.getQuantidade(), TransacaoTipo.valueOf(this.transacao.getTipo().name()));
                     this.repoproduto.Salvar(produto);
@@ -613,7 +615,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnRemoverTransacao;
     private javax.swing.JButton btnValidarPessoa;
-    private javax.swing.JComboBox<String> cbxTransacaoTipo;
+    private javax.swing.JComboBox<TransacaoTipo> cbxTransacaoTipo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCriacao;
