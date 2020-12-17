@@ -11,6 +11,6 @@ package br.edu.ifnmg.logicaaplicacao;
  */
 public enum PessoaTipo {
     Fisica,
-    Jurídica
+    Juridica
     
 }

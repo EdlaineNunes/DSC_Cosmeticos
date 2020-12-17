@@ -7,10 +7,8 @@ package br.edu.ifnmg.sistemacomercial.apresentacao.desktop;
 
 import br.edu.ifnmg.logicaaplicacao.RepositorioFactory;
 import br.edu.ifnmg.logicaaplicacao.Transacao;
-import br.edu.ifnmg.logicaaplicacao.TransacaoItem;
 import br.edu.ifnmg.logicaaplicacao.TransacaoRepositorio;
-import br.edu.ifnmg.logicaaplicacao.TransacaoTipo;
-import java.util.ArrayList;
+import br.edu.ifnmg.logicaaplicacao.Usuario;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -22,18 +20,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TransacaoBuscar extends javax.swing.JInternalFrame {
     Transacao transacao;
-    TransacaoTipo tipo;
-    List<TransacaoItem> itens;
     TransacaoRepositorio repositorio;
+    Usuario usuario;
     /**
      * Creates new form TransacaoBuscar
      */
-    public TransacaoBuscar() {
+    public TransacaoBuscar(Usuario u) {
         this.transacao = new Transacao();
-        this.tipo = null;
-        this.itens = new ArrayList<>();
         
         this.repositorio = RepositorioFactory.getTransacaoRepositorio();
+        
+        this.usuario = u;
         initComponents();
     }
 
@@ -72,6 +69,11 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
 
         btnNovaTransacao.setText("NOVA TRANSAÇÃO");
         btnNovaTransacao.setToolTipText("Clique para adicionar uma NOVA TRANSAÇÃO!");
+        btnNovaTransacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaTransacaoActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("LIMPAR");
         btnLimpar.setToolTipText("Clique para LIMPAR a busca.");
@@ -105,6 +107,11 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
             }
         });
         tblResultado.setToolTipText("Informações das Transações.");
+        tblResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblResultadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblResultado);
         if (tblResultado.getColumnModel().getColumnCount() > 0) {
             tblResultado.getColumnModel().getColumn(0).setResizable(false);
@@ -216,6 +223,27 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
             tblResultado.setModel(modelo);
         }
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnNovaTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaTransacaoActionPerformed
+        // TODO add your handling code here:
+        TransacaoNova tela = new TransacaoNova(new Transacao(), usuario);
+        this.getParent().add(tela);
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnNovaTransacaoActionPerformed
+
+    private void tblResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMouseClicked
+        // TODO add your handling code here:
+        int linha = tblResultado.getSelectedRow();
+        Long id = Long.parseLong(tblResultado.getValueAt(linha, 0).toString());
+        
+        Transacao t = repositorio.Abrir(id);
+        
+        TransacaoNova tela = new TransacaoNova(t, usuario);
+        this.getParent().add(tela);
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tblResultadoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

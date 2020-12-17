@@ -10,5 +10,5 @@ package br.edu.ifnmg.logicaaplicacao;
  * @author edlaine
  */
 public interface ProdutoRepositorio extends Repositorio<Produto> {
-    
+    public Produto buscaNomeProduto(String nome);
 }

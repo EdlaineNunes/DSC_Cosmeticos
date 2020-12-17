@@ -205,7 +205,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void JMIBuscarTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIBuscarTransacaoActionPerformed
         // TODO add your handling code here:
-        TransacaoBuscar tela = new TransacaoBuscar();
+        TransacaoBuscar tela = new TransacaoBuscar(usuario);
         this.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_JMIBuscarTransacaoActionPerformed

@@ -50,7 +50,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 
     public PessoaJuridica(){
         super();
-        this.setTipo(PessoaTipo.Jurídica);
+        this.setTipo(PessoaTipo.Juridica);
         this.razaoSocial = "";
         this.cnpj = "";
         this.rua = "";
@@ -65,7 +65,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
             String rua, String numero, String bairro, String complemento, 
             String cidade) {
         super();
-        this.setTipo(PessoaTipo.Jurídica);
+        this.setTipo(PessoaTipo.Juridica);
         this.setNome(nome);
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;

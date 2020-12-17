@@ -130,7 +130,7 @@ public class Console {
        pj.setNome("seu josé barbearia");
        pj.setCnpj("000000000000");
        pj.setRazaoSocial("jose LTDA");
-       pj.setTipo(PessoaTipo.Jurídica);
+       pj.setTipo(PessoaTipo.Juridica);
        pj.setRua("Rua Oliveira");
        pj.setBairro("Centro");
        pj.setNumero("55A");
@@ -145,7 +145,7 @@ public class Console {
        pjA.setNome("Mãos de luxo");
        pjA.setCnpj("0003333000000");
        pjA.setRazaoSocial("Mãos de luxo LTDA");
-       pjA.setTipo(PessoaTipo.Jurídica);
+       pjA.setTipo(PessoaTipo.Juridica);
        pjA.setRua("Rua Almeida");
        pjA.setBairro("São José");
        pjA.setNumero("99");

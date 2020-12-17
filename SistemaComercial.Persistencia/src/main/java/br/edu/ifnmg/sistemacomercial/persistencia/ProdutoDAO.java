@@ -53,5 +53,16 @@ public class ProdutoDAO
         
         return consulta.getResultList();  
     }
+
+    @Override
+    public Produto buscaNomeProduto(String nome) {
+        String jpql = "select p from Produto p where p.nome =:nome";
+        Query consulta = this.manager.createQuery(jpql);
+        consulta.setParameter("nome", nome);
+        
+        if(consulta.getResultList().size() > 0)
+            return (Produto) consulta.getSingleResult();
+        return null;
+    }
     
 }
