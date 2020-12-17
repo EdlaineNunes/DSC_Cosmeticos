@@ -57,7 +57,10 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
 
         lblNome.setText("Nome do Produto:");
 
+        txtNome.setToolTipText("Insira o nome do produto.");
+
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setToolTipText("Clique para efetuar uma BUSCA!");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -65,6 +68,7 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         });
 
         btnNovo.setText("NOVO PRODUTO");
+        btnNovo.setToolTipText("Clique para cadastrar um NOVO PRODUTO!");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
@@ -72,6 +76,7 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         });
 
         btnLimpar.setText("LIMPAR");
+        btnLimpar.setToolTipText("Clique para LIMPAR os filtros da busca.");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -101,6 +106,7 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblResultado.setToolTipText("Informações dos produtos.");
         tblResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblResultadoMouseClicked(evt);

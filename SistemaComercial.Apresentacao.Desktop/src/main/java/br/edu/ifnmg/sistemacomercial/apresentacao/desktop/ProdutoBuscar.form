@@ -70,10 +70,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Insira o nome do produto."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="BUSCAR"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique para efetuar uma BUSCA!"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
@@ -82,6 +86,7 @@
     <Component class="javax.swing.JButton" name="btnNovo">
       <Properties>
         <Property name="text" type="java.lang.String" value="NOVO PRODUTO"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique para cadastrar um NOVO PRODUTO!"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoActionPerformed"/>
@@ -90,6 +95,7 @@
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="text" type="java.lang.String" value="LIMPAR"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique para LIMPAR os filtros da busca."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
@@ -119,6 +125,7 @@
                 <Column editable="false" title="Vers&#xe3;o" type="java.lang.Integer"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informa&#xe7;&#xf5;es dos produtos."/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">

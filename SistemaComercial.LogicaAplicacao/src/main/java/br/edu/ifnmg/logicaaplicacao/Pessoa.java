@@ -66,7 +66,7 @@ public class Pessoa implements Serializable {
         super();
         this.id = 0L;
         this.nome="";
-        this.tipo = PessoaTipo.Fisica;
+        this.tipo = null;
         this.telefones = new ArrayList<>();
         this.emails = new ArrayList<>();
         this.status = Status.Ativo;

@@ -124,38 +124,53 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         lblID.setText("ID:");
 
         lblIDProduto.setText("0");
+        lblIDProduto.setToolTipText("ID do Produto.");
 
         lblNome.setText("Nome:");
 
+        txtNome.setToolTipText("Insira o nome do produto.");
+
         lblValorUnitario.setText("Valor Unitário: R$");
+
+        txtValorUnitario.setToolTipText("Digite o valor unitário.");
 
         lblEstoque.setText("Qnt. Estoque:");
 
         lblUsuario.setText("Login Usuário :");
+        lblUsuario.setToolTipText("Login do Usuário.");
 
         lblStatus.setText("Status:");
 
+        txtRazaoCompra.setToolTipText("Indique qual é a razão de compra.");
+
         cbxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+        cbxStatus.setToolTipText("Selecione um STATUS para o produto.");
 
         lblUnidCompra.setText("Unidade de Compra:");
 
         cbxUnidCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unidade", "Caixa", "Fardo", "Dúzia", "Outro  " }));
+        cbxUnidCompra.setToolTipText("Selecione a unidade de compra.");
 
         lblUnidVenda.setText("Unidade de Venda:");
 
         cbxUnidVenda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unidade", "Caixa", "Fardo", "Dúzia", "Outro  " }));
+        cbxUnidVenda.setToolTipText("Selecione a unidade de venda.");
 
         lblRazaoCompra.setText("Razão de Compra:");
 
         lblRazaoVenda.setText("Razão de Venda:");
+
+        txtRazaoVenda.setToolTipText("Indique qual é a razão de venda.");
 
         lblFinalidade.setText("Finalidade:");
 
         lblAplicacao.setText("Aplicação:");
 
         cbxAplicacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pele", "Lábios", "Capilar", "Dentes", "Genitálias", "Outro " }));
+        cbxAplicacao.setToolTipText("Selecione a APLICAÇÃO do produto.");
 
         cbxFinalidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpar", "Perfumar", "Proteger", "Outro" }));
+        cbxFinalidade.setToolTipText("Selecione a FINALIDADE do produto.");
 
         btnSalvar.setText("SALVAR");
         btnSalvar.setToolTipText("Clique para SALVAR.");
@@ -182,6 +197,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         });
 
         lblEstoqueQnt.setText("0");
+        lblEstoqueQnt.setToolTipText("Quantidade disponível em estoque.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

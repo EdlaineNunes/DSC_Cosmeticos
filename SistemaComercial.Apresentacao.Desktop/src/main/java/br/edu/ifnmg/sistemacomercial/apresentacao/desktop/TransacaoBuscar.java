@@ -58,9 +58,12 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
         setTitle("Buscar Transação");
         setToolTipText("Buscar Transação.");
 
-        lblID.setText("ID:");
+        lblID.setText("ID da TRANSAÇÃO:");
+
+        txtID.setToolTipText("Insira o ID da TRANSAÇÃO.");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setToolTipText("Clique para efetuar uma BUSCA.");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -68,8 +71,10 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
         });
 
         btnNovaTransacao.setText("NOVA TRANSAÇÃO");
+        btnNovaTransacao.setToolTipText("Clique para adicionar uma NOVA TRANSAÇÃO!");
 
         btnLimpar.setText("LIMPAR");
+        btnLimpar.setToolTipText("Clique para LIMPAR a busca.");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -81,7 +86,7 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Pessoa (ID)", "Pessoa (Nome)", "Valor Total R$", "Qnt de Itens", "Tipo", "Usuário (Login)", "Versão"
+                "ID Transação", "Pessoa (ID)", "Pessoa (Nome)", "Valor Total R$", "Qnt de Itens", "Tipo", "Usuário (Login)", "Versão"
             }
         ) {
             Class[] types = new Class [] {
@@ -99,6 +104,7 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblResultado.setToolTipText("Informações das Transações.");
         jScrollPane1.setViewportView(tblResultado);
         if (tblResultado.getColumnModel().getColumnCount() > 0) {
             tblResultado.getColumnModel().getColumn(0).setResizable(false);
@@ -116,9 +122,9 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(101, 101, 101)
                 .addComponent(lblID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(btnBuscar)
@@ -126,7 +132,7 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
                 .addComponent(btnNovaTransacao)
                 .addGap(18, 18, 18)
                 .addComponent(btnLimpar)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -144,7 +150,7 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
                     .addComponent(btnLimpar))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,14 +158,16 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        // adicionando o que foi escrito no usuário
-        transacao.setId(Long.parseLong( txtID.getText().toString() ));
+        // adicionando o que foi escrito
+        if(this.txtID.getText().length() > 0)
+            this.transacao.setId(Long.parseLong( txtID.getText().toString() ));
+        else this.transacao.setId(0L);
         //fazendo a bsuca no rep com o filtro
-        List<Transacao> resultado = repositorio.Buscar(transacao);
+        List<Transacao> resultado = this.repositorio.Buscar(this.transacao);
         //criou um modelo vazio
         DefaultTableModel modelo = new DefaultTableModel();
         //adicionando as colunas
-        modelo.addColumn("ID");
+        modelo.addColumn("ID Transação");
         modelo.addColumn("Pessoa (ID)");
         modelo.addColumn("Pessoa (Nome)");
         modelo.addColumn("Valor Total R$");
@@ -174,7 +182,7 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
             linha.add(t.getId());
             linha.add(t.getPessoa().getId());
             linha.add(t.getPessoa().getNome());
-            linha.add(t.getValorTotal());
+            linha.add("R$ " + t.getValorTotal());
             linha.add(t.getItens().size());
             linha.add(t.getTipo());
             linha.add(t.getUsuario().getLogin());
@@ -192,10 +200,11 @@ public class TransacaoBuscar extends javax.swing.JInternalFrame {
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente limpar a busca", "Confirmação", JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION){
             txtID.setText("");
+            this.transacao.setId(0L);
 
             DefaultTableModel modelo = new DefaultTableModel();
             //adicionando as colunas
-            modelo.addColumn("ID");
+            modelo.addColumn("ID Transação");
             modelo.addColumn("Pessoa (ID)");
             modelo.addColumn("Pessoa (Nome)");
             modelo.addColumn("Valor Total R$");
