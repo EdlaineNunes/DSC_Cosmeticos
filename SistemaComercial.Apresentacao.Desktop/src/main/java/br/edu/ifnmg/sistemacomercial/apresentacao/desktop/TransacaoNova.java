@@ -134,7 +134,8 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         }
     }
         
-    public void calculoPreco(){
+    public void calculoPreco(TransacaoItem i){
+        this.item = i;
         this.item.setQuantidade(Integer.parseInt( this.txtQuantidade.toString() ));
         this.transacao.setValorTotal(BigDecimal.valueOf(
                 Long.parseLong(
@@ -452,20 +453,23 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
 
     private void btnValidarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarPessoaActionPerformed
         // TODO add your handling code here:
-        this.pessoa = repopessoa.Abrir(Long.parseLong(this.txtIDPessoa.getText().toString()));
-        if(this.pessoa != null){
-            JOptionPane.showConfirmDialog(this, "Pessoa validada com sucesso!", "Informação!", JOptionPane.INFORMATION_MESSAGE);
-            this.txtIDPessoa.setText(this.pessoa.getId().toString());
-            this.lblNomePessoaTransacao.setText(this.pessoa.getNome());
-            this.lblLoginUsuario.setText(this.usuario.getLogin()); 
-            
-            this.transacao.setPessoa(pessoa);
-            this.transacao.setUsuario(usuario);
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "ID Pessoa incorreto ou inexistente! Tente novamente!", "ERRO!", JOptionPane.ERROR_MESSAGE);
-            this.txtIDPessoa.setText("");
-        }
+        if(this.txtIDPessoa.getText().length() > 0){    
+            this.pessoa = repopessoa.Abrir(Long.parseLong(this.txtIDPessoa.getText().toString()));
+            if(this.pessoa != null){
+                JOptionPane.showConfirmDialog(this, "Pessoa validada com sucesso!", "Informação!", JOptionPane.INFORMATION_MESSAGE);
+                this.txtIDPessoa.setText(this.pessoa.getId().toString());
+                this.lblNomePessoaTransacao.setText(this.pessoa.getNome());
+                this.lblLoginUsuario.setText(this.usuario.getLogin()); 
+
+                this.transacao.setPessoa(pessoa);
+                this.transacao.setUsuario(usuario);
+
+            }else{
+                JOptionPane.showMessageDialog(this, "ID Pessoa incorreto ou inexistente! Tente novamente!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                this.txtIDPessoa.setText("");
+            }
+        }else
+            JOptionPane.showMessageDialog(this, "Insira um ID no campo ID Pessoa!", "Erro!", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnValidarPessoaActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -510,34 +514,24 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:               
         if( !this.txtNomeProduto.getText().isEmpty() && 
                 !this.txtQuantidade.getText().isEmpty() ){
-            //verifico se está na lista
-            for(TransacaoItem i : this.itens){
-                this.itens.remove(i);
-                this.txtNomeProduto.setText("");
-                this.txtQuantidade.setText("");
-                atualizaItens();
-                
-            }
-            if(produto.getEstoque() >= Integer.parseInt(this.txtQuantidade.getText().toString())){
-                    int quantidade = Integer.parseInt(this.txtQuantidade.getText().toString());
-                    this.item = new TransacaoItem(transacao, produto, quantidade);
-                    //adiciona na lista
-                    this.itens.add(item);
-                    
-                    this.lblValorTotal.setText( this.transacao.getValorTotal().toString() );
-                    
-                    
+            if(JOptionPane.showConfirmDialog(this, "Deseja realmente REMOVER o produto?", "Confirmação",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                //verifico se está na lista
+                for(TransacaoItem i : this.itens){
+                    this.itens.remove(i);
                     this.txtNomeProduto.setText("");
                     this.txtQuantidade.setText("");
                     atualizaItens();
-                    
-                }else{
-                    JOptionPane.showMessageDialog(this, "Quantidade superior ao ESTOQUE!", "ERRO!" , JOptionPane.INFORMATION_MESSAGE);
-                    this.txtQuantidade.setText("");
+
                 }
+            }else{
+                this.txtNomeProduto.setText("");
+                this.txtQuantidade.setText("");
+                JOptionPane.showMessageDialog(this, "Operaçãoo cancelada pelo Usuário","Cancelamento!",JOptionPane.INFORMATION_MESSAGE);
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Selecione o item que deseja REMOVER!", "ERRO!", JOptionPane.ERROR_MESSAGE);
         }
@@ -557,12 +551,19 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if( !this.txtNomeProduto.getText().isEmpty() && 
                 !this.txtQuantidade.getText().isEmpty() ){
-            //verifico se está na lista
-            for(TransacaoItem i : this.itens){
-                this.itens.remove(i);
+            if(JOptionPane.showConfirmDialog(this, "Deseja realmente EDITAR A QUANTIDADE do produto?", "Confirmação",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                //verifico se está na lista
+                for(TransacaoItem i : this.itens){
+                    this.itens.remove(i);
+                    this.txtQuantidade.setText("");
+                    atualizaItens();
+                }    
+            } else{
+                this.txtNomeProduto.setText("");
                 this.txtQuantidade.setText("");
-                atualizaItens();
-            }      
+                JOptionPane.showMessageDialog(this, "Operaçãoo cancelada pelo Usuário","Cancelamento!",JOptionPane.INFORMATION_MESSAGE);
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Selecione o item que deseja ATUALIZAR A QUANTIDADE!", "Informação!", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -580,21 +581,20 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         this.transacao.setTipo(TransacaoTipo.valueOf( this.cbxTransacaoTipo.getSelectedItem().toString() ));
         
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente finalizar a Transacao de " + this.transacao.getTipo() + "?", "Confirmação", JOptionPane.YES_NO_OPTION)
-            == JOptionPane.YES_OPTION){
-//            this.transacao.setCriacao(Date.valueOf( this.lblCriacaoTransacao.getText() ));
-//            this.transacao.setValorTotal(new BigDecimal (this.lblValorTotal.getText()));
-            for(TransacaoItem i: this.itens){
-                this.produto = this.repoproduto.Abrir(i.getProduto().getId());
-                this.produto.setEstoque(i.getQuantidade(), TransacaoTipo.valueOf(this.transacao.getTipo().name()));
-                this.repoproduto.Salvar(produto);
-                this.produto = new Produto();
-            }  
-                
+            == JOptionPane.YES_OPTION){                          
             if(repositorio.Salvar(this.transacao)){
                 JOptionPane.showMessageDialog(this, "Sucesso ao salvar!","Informação!",JOptionPane.INFORMATION_MESSAGE);
                 
+                for(TransacaoItem i: this.itens){
+                    this.produto = this.repoproduto.Abrir(i.getProduto().getId());
+                    this.produto.setEstoque(i.getQuantidade(), TransacaoTipo.valueOf(this.transacao.getTipo().name()));
+                    this.repoproduto.Salvar(produto);
+                    this.transacao.add(new TransacaoItem(transacao, produto, i.getQuantidade()));
+                    this.produto = new Produto();
+                }
+                
                 this.setComponentes();
-                this.lblValorTotal.setText(this.transacao.getValorTotal().toString()); 
+                
             }else{
                 JOptionPane.showMessageDialog(this, "Erro ao salvar!","ERRO!",JOptionPane.ERROR_MESSAGE);
             }

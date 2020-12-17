@@ -141,7 +141,7 @@ public class Transacao implements Serializable {
     }
     
     public boolean add(TransacaoItem item){
-        item.setTransacao(this);
+        //item.setTransacao(this);
         if(! this.itens.contains(item)){
             this.itens.add(item);
             this.valorTotal = this.valorTotal.add (
