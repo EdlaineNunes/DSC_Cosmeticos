@@ -38,6 +38,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMBMenuGeral = new javax.swing.JMenuBar();
         JMSistema = new javax.swing.JMenu();
         JMISair = new javax.swing.JMenuItem();
@@ -53,7 +59,68 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JMIBuscarTransacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema Comercial");
+        setTitle("COSMÉTICOS E CIA - C&C ");
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel1.setToolTipText("Tela Incial");
+
+        jLabel1.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 3, 80)); // NOI18N
+        jLabel1.setText("Cosméticos & Cia ");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setText("Sob as orientações do Prof°. Dr°. Petrônio Cândido");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setText("DESENVOLVIMENTO DE SISTEMAS CORPORATIVOS");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setText("Desenvolvido por: Edlâine Rodrigues Nunes");
+
+        jLabel6.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 3, 80)); // NOI18N
+        jLabel6.setText("C&C");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(75, 75, 75))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(360, 360, 360))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(548, 548, 548)
+                .addComponent(jLabel6)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(31, 31, 31))
+        );
+
+        jMBMenuGeral.setBackground(new java.awt.Color(204, 204, 255));
 
         JMSistema.setText("Sistema");
 
@@ -141,11 +208,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1358, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -257,7 +324,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIUsuario;
     private javax.swing.JMenu JMSistema;
     private javax.swing.JMenu JMTransacao;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMBMenuGeral;
     private javax.swing.JMenu jMContatos;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
