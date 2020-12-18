@@ -51,7 +51,7 @@ public class Console {
        Usuario u = new Usuario();
        u.setNome("Maria P");
        u.setFuncao(Funcao.Atendente);
-       u.setCpf("11111111111");
+       u.setCpf("111.111.111-11");
        u.setLogin("maria");
        u.setSenha("123");
        u.setSexo(Genero.Feminino);
@@ -61,7 +61,7 @@ public class Console {
        Usuario ua = new Usuario();
        ua.setNome("José R");
        ua.setFuncao(Funcao.Caixa);
-       ua.setCpf("22222222222");
+       ua.setCpf("222.222.222-22");
        ua.setLogin("jose");
        ua.setSenha("123");
        ua.setSexo(Genero.Masculino);
@@ -71,7 +71,7 @@ public class Console {
        Usuario ub = new Usuario();
        ub.setNome("Pablo B");
        ub.setFuncao(Funcao.Gerente);
-       ub.setCpf("33333333333");
+       ub.setCpf("333.333.333-33");
        ub.setLogin("pablo");
        ub.setSenha("123");
        ub.setSexo(Genero.Outro);
@@ -81,7 +81,7 @@ public class Console {
        Usuario uc = new Usuario();
        uc.setNome("Administrador");
        uc.setFuncao(Funcao.Gerente);
-       uc.setCpf("33334433333");
+       uc.setCpf("333.344.333-33");
        uc.setLogin("adm");
        uc.setSenha("123");
        uc.setSexo(Genero.Outro);
@@ -92,12 +92,12 @@ public class Console {
        PessoaFisica pf = new PessoaFisica();
        pf.setNome("Ana Maria B");
        pf.setGenero(Genero.Feminino);
-       pf.setCpf("44444444444");
+       pf.setCpf("444.444.444-44");
        pf.setRg("MG0198764");
        pf.setTipo(PessoaTipo.Fisica);
-       pf.addTelefone(new PessoaTelefone(pf, "111111111"));
+       pf.addTelefone(new PessoaTelefone(pf, "(038) 99988-9988"));
        pf.addEmail(new PessoaEmail(pf, "email@gmail.com"));
-       pf.addTelefone(new PessoaTelefone(pf, "222222222"));
+       pf.addTelefone(new PessoaTelefone(pf, "(038) 98765-9809"));
        pf.addEmail(new PessoaEmail(pf, "teste@gmail.com"));
        pf.setStatus(Status.Ativo);
        repoPFisica.Salvar(pf);
@@ -105,10 +105,10 @@ public class Console {
        PessoaFisica pfA = new PessoaFisica();
        pfA.setNome("João Marcelo B");
        pfA.setGenero(Genero.Masculino);
-       pfA.setCpf("55555555555");
+       pfA.setCpf("555.555.555-55");
        pfA.setRg("MG0198774");
        pfA.setTipo(PessoaTipo.Fisica);
-       pfA.addTelefone(new PessoaTelefone(pfA, "111111122"));
+       pfA.addTelefone(new PessoaTelefone(pfA, "(038) 98765-7854"));
        pfA.addEmail(new PessoaEmail(pfA, "email@gmail.com"));
        pfA.setStatus(Status.Ativo);
        repoPFisica.Salvar(pfA);
@@ -116,10 +116,10 @@ public class Console {
        PessoaFisica pfB = new PessoaFisica();
        pfB.setNome("Angelo Junior Pereira");
        pfB.setGenero(Genero.Masculino);
-       pfB.setCpf("77777777777");
+       pfB.setCpf("777.777.777-77");
        pfB.setRg("MG0198784");
        pfB.setTipo(PessoaTipo.Fisica);
-       pfB.addTelefone(new PessoaTelefone(pfB, "111111133"));
+       pfB.addTelefone(new PessoaTelefone(pfB, "(038) 98756-0954"));
        pfB.addEmail(new PessoaEmail(pfB, "email@gmail.com"));
        pfB.setStatus(Status.Ativo);
        repoPFisica.Salvar(pfB);
@@ -128,7 +128,7 @@ public class Console {
        //criando pessoa juridica
        PessoaJuridica pj = new PessoaJuridica();
        pj.setNome("seu josé barbearia");
-       pj.setCnpj("000000000000");
+       pj.setCnpj("00.000.000/0000-00");
        pj.setRazaoSocial("jose LTDA");
        pj.setTipo(PessoaTipo.Juridica);
        pj.setRua("Rua Oliveira");
@@ -136,14 +136,14 @@ public class Console {
        pj.setNumero("55A");
        pj.setCidade("Londrina");
        pj.setComplemento("Não há");
-       pj.addTelefone(new PessoaTelefone(pj, "111111441"));
+       pj.addTelefone(new PessoaTelefone(pj, "(031) 98976-6578"));
        pj.addEmail(new PessoaEmail(pj, "email@gmail.com"));
        pj.setStatus(Status.Ativo);
        repoPJuridica.Salvar(pj);
        
        PessoaJuridica pjA = new PessoaJuridica();
        pjA.setNome("Mãos de luxo");
-       pjA.setCnpj("0003333000000");
+       pjA.setCnpj("11.111.111/1111-11");
        pjA.setRazaoSocial("Mãos de luxo LTDA");
        pjA.setTipo(PessoaTipo.Juridica);
        pjA.setRua("Rua Almeida");
@@ -151,7 +151,7 @@ public class Console {
        pjA.setNumero("99");
        pjA.setCidade("Feira de Santana");
        pjA.setComplemento("Não há");
-       pjA.addTelefone(new PessoaTelefone(pjA, "111111551"));
+       pjA.addTelefone(new PessoaTelefone(pjA, "(038) 98734-9090"));
        pjA.addEmail(new PessoaEmail(pjA, "email@gmail.com"));  
        pjA.setStatus(Status.Ativo);
        repoPJuridica.Salvar(pjA);

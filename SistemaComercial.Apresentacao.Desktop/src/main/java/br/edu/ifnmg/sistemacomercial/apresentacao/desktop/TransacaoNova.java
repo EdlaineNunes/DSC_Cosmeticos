@@ -156,7 +156,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         ID = new javax.swing.JLabel();
         lblIDTransacao = new javax.swing.JLabel();
         lblPessoa = new javax.swing.JLabel();
-        txtIDPessoa = new javax.swing.JTextField();
         lblNomePessoa = new javax.swing.JLabel();
         lblNomePessoaTransacao = new javax.swing.JLabel();
         btnValidarPessoa = new javax.swing.JButton();
@@ -167,7 +166,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         lblInfo = new javax.swing.JLabel();
         lblNomeProduto = new javax.swing.JLabel();
         lblQnt = new javax.swing.JLabel();
-        txtQuantidade = new javax.swing.JTextField();
         btnAdicionar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblResultado = new javax.swing.JTable();
@@ -182,6 +180,8 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         lblUsuario = new javax.swing.JLabel();
         lblLoginUsuario = new javax.swing.JLabel();
         btnEditarQnt = new javax.swing.JButton();
+        txtIDPessoa = new javax.swing.JFormattedTextField();
+        txtQuantidade = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Editar Transação");
@@ -193,8 +193,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         lblIDTransacao.setToolTipText("ID Transação.");
 
         lblPessoa.setText("ID Pessoa:");
-
-        txtIDPessoa.setToolTipText("ID Pessoa.");
 
         lblNomePessoa.setText("Nome Pessoa:");
 
@@ -219,8 +217,6 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         lblNomeProduto.setText("Nome do Produto:");
 
         lblQnt.setText("Quantidade:");
-
-        txtQuantidade.setToolTipText("Insira a quantidade desejada.");
 
         btnAdicionar.setText("ADICIONAR PRODUTO");
         btnAdicionar.setToolTipText("Clique para ADICIONAR o produto.");
@@ -314,6 +310,11 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
             }
         });
 
+        txtIDPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtIDPessoa.setToolTipText("Insira o ID da Pessoa.");
+
+        txtQuantidade.setToolTipText("Insira a quantidade.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -331,8 +332,8 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(lblQnt)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtQuantidade))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(btnAdicionar)
                                     .addGap(18, 18, 18)
@@ -343,7 +344,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(181, 181, 181)
                         .addComponent(lblInfo)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,19 +369,19 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                                 .addComponent(lblIDTransacao)
                                 .addGap(35, 35, 35)
                                 .addComponent(lblPessoa)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIDPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblNomePessoa)
                                 .addGap(53, 53, 53)
                                 .addComponent(lblNomePessoaTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnValidarPessoa)
-                                .addGap(31, 31, 31))))))
+                                .addGap(35, 35, 35))))))
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -399,14 +400,14 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ID)
                     .addComponent(lblIDTransacao)
                     .addComponent(lblPessoa)
-                    .addComponent(txtIDPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNomePessoa)
-                    .addComponent(lblNomePessoaTransacao))
+                    .addComponent(lblNomePessoaTransacao)
+                    .addComponent(txtIDPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCriacao)
@@ -428,7 +429,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQnt)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar)
                     .addComponent(btnRemover)
@@ -499,6 +500,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
                     this.item = new TransacaoItem(transacao, produto, quantidade);
                     //adiciona na lista
                     this.transacao.add(item);
+                    this.lblValorTotal.setText(this.transacao.getValorTotal().toString());
                     this.txtNomeProduto.setText("");
                     this.txtQuantidade.setText("");
                     atualizaItens();
@@ -633,7 +635,7 @@ public class TransacaoNova extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblValorFinal;
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JTable tblResultado;
-    private javax.swing.JTextField txtIDPessoa;
+    private javax.swing.JFormattedTextField txtIDPessoa;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables

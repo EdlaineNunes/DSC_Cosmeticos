@@ -27,7 +27,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     @Column (name="razaoSocial", nullable= false, length=250)
     private String razaoSocial;
     
-    @Column (name="cnpj", nullable=false, length=20, unique=true)
+    @Column (name="cnpj", nullable=false, length=25, unique=true)
     private String cnpj;
     
     @Column (name="rua", nullable=false, length=150)

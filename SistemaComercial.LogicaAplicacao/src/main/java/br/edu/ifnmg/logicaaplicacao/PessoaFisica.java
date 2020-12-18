@@ -29,10 +29,10 @@ public class PessoaFisica extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
    
-    @Column (length = 11, nullable= false, unique=true)
+    @Column (length = 20, nullable= false, unique=true)
     private String cpf;
     
-    @Column (length = 11, nullable = true)
+    @Column (length = 20, nullable = true)
     private String rg;
     
     @Version

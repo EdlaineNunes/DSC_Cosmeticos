@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
     @Column(length=250, nullable=false)
     private String nome;
     
-    @Column(length=15, nullable=false, unique=true)
+    @Column(length=20, nullable=false, unique=true)
     private String cpf;
     
     @Enumerated (EnumType.STRING)

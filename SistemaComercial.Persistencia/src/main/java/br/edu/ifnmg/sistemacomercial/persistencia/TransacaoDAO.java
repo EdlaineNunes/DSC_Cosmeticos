@@ -35,11 +35,6 @@ public class TransacaoDAO
                 filtros += "t.id = :id";
                 parametros.put("id", obj.getId());
             } 
-//            if(obj.getPessoa() != null && obj.getPessoa().getId() > 0){
-//                if(filtros.length() > 0) filtros += " and ";
-//                filtros += "t.pessoa_id like :pessoa";
-//                parametros.put("pessoa_id", obj.getPessoa().getId());
-//            }
             if(obj.getUsuario() != null && obj.getUsuario().getId() > 0){
                 if(filtros.length() > 0) filtros += " and ";
                 filtros += "t.usuario_id = :usuario";

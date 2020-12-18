@@ -37,8 +37,8 @@
                                   <Component id="txtNomeProduto" min="-2" pref="177" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblQnt" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtQuantidade" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtQuantidade" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -86,9 +86,9 @@
                               <Component id="lblPessoa" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtIDPessoa" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblNomePessoa" min="-2" max="-2" attributes="0"/>
@@ -96,10 +96,10 @@
                               <Component id="lblNomePessoaTransacao" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnValidarPessoa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -128,14 +128,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblIDTransacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPessoa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtIDPessoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNomePessoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNomePessoaTransacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIDPessoa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -161,7 +161,7 @@
                   <Component id="lblQnt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" pref="32" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" pref="43" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRemover" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -200,11 +200,6 @@
     <Component class="javax.swing.JLabel" name="lblPessoa">
       <Properties>
         <Property name="text" type="java.lang.String" value="ID Pessoa:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtIDPessoa">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="ID Pessoa."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNomePessoa">
@@ -256,11 +251,6 @@
     <Component class="javax.swing.JLabel" name="lblQnt">
       <Properties>
         <Property name="text" type="java.lang.String" value="Quantidade:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtQuantidade">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Insira a quantidade desejada."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAdicionar">
@@ -395,6 +385,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarQntActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtIDPessoa">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Insira o ID da Pessoa."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtQuantidade">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Insira a quantidade."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

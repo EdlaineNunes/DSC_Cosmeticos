@@ -85,13 +85,16 @@ public class UsuarioDAO
         
         EntityTransaction transaction = this.manager.getTransaction();
         try{
-            transaction.begin();// inicia a transação
+            // inicia a transação
+            transaction.begin();
             
             Query sql = this.manager.createQuery(jpql);
             sql.setParameter("login", login);
 
-            if(sql.executeUpdate() > 0){//Até aqui é simulado a transação e não consecutivamente a transação
-                transaction.commit(); // Aqui é relalizado efetivamente a trasanção/ Finalia a transação
+            //Até aqui é simulado a transação e não consecutivamente a transação
+            if(sql.executeUpdate() > 0){
+                // Aqui é relalizado efetivamente a trasanção/ Finalia a transação
+                transaction.commit(); 
                 return true;
             }
         }catch(Exception exeption){
